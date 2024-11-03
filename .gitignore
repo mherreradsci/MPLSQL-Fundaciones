@@ -1,0 +1,6 @@
+/desa
+/0200-Scripts
+/0300-SQL
+/0400-Utilities
+*.out
+**/Testing/*
