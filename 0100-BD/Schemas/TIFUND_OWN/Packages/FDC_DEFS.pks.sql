@@ -74,7 +74,7 @@ IS
     $END
 
     --* Constantes para identificar el package
-    k_package                 CONSTANT package_name_t := 'GRL_DEFS';
+    k_package                 CONSTANT package_name_t := 'FDC_DEFS';
 
     --* Char Codes
     SUBTYPE char_t IS VARCHAR2 (1 CHAR); -- For multibyte
