@@ -1,4 +1,4 @@
-CREATE OR REPLACE PACKAGE BODY tifund_own.set_as_uninvoked_parameter
+CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."SET_AS_UNINVOKED_PARAMETER"
 /*******************************************************************************
 Empresa:    Explora Information Technologies
 Proyecto:   Fundaciones

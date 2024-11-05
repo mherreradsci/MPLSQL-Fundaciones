@@ -1,5 +1,4 @@
-CREATE OR REPLACE 
-package BODY TIFUND_OWN.GRL_SISTEMAS_QP
+CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_QP"
 --@!!Start
 --@!! Generado por #APPVER#:GECO V1.0 winter 2024
 --@!! Timestamp #TMSTMP#:20240822233230
@@ -21,19 +20,19 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_QP
 * ----------- ------------ -----------------------------------------------------
 * 12-Aug-2024 MHERRERA     Creación
 *******************************************************************************/
- is 
- 
+ is
+
     -- Consulta la exitencia de un registro
    -- en la tabla GRL_SISTEMAS basado en la PK
-    function existe( 
-    p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t 
+    function existe(
+    p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t
     ) return BOOLEAN is
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'EXISTE';
         k_modulo CONSTANT FDC_DEFS.module_name_t := k_package || '.' || k_programa;
         -- Variables, constantes, tipos y subtipos locales
         cursor un_registro is select 'x' from GRL_SISTEMAS
-        where  
+        where
             ID_SISTEMA = p_id_sistema;
         v_valor VARCHAR2(1);
         v_retval BOOLEAN;
@@ -50,11 +49,11 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_QP
             );
             raise;
     end existe;
-     
-    -- Consulta un registro de tabla GRL_SISTEMAS 
+
+    -- Consulta un registro de tabla GRL_SISTEMAS
    -- basado en la constraint SIST_PK
-    procedure sel_SIST_PK( 
-        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t 
+    procedure sel_SIST_PK(
+        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t
         ,p_GRL_SISTEMAS OUT NOCOPY GRL_SISTEMAS_TP.GRL_SISTEMAS_rt
     )  is
         --* Constantes para identificar el programa
@@ -71,17 +70,17 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_QP
             ,AUD_MODIFICADO_EL
             ,AUD_MODIFICADO_POR
             from GRL_SISTEMAS
-            where  
+            where
                 ID_SISTEMA = p_id_sistema;
             v_found BOOLEAN;
     begin
-     
+
         open c_GRL_SISTEMAS;
         fetch c_GRL_SISTEMAS into p_GRL_SISTEMAS;
         v_found := c_GRL_SISTEMAS%FOUND;
         close c_GRL_SISTEMAS;
         if not v_found then raise no_data_found; end if;
-         
+
     exception
         when no_data_found then
             raise no_data_found;
@@ -93,8 +92,8 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_QP
     end sel_SIST_PK;
     -- Obtiene un cursor via una consulta sobre la constraint
    -- SIST_PK de la tabla GRL_SISTEMAS
-    function sel_SIST_PK( 
-    p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t 
+    function sel_SIST_PK(
+    p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t
     ) return GRL_SISTEMAS_TP.GRL_SISTEMAS_rc is
             --* Constantes para identificar el programa
             k_programa CONSTANT FDC_DEFS.program_name_t := 'SEL_SIST_PK';
@@ -113,9 +112,9 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_QP
         ,AUD_MODIFICADO_EL
         ,AUD_MODIFICADO_POR
         from GRL_SISTEMAS
-        where  
+        where
             ID_SISTEMA = p_id_sistema;
-         
+
         return cu_GRL_SISTEMAS;
     exception
         when others then
@@ -124,9 +123,9 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_QP
             );
             raise;
     end sel_SIST_PK;
-     
-     
-     
+
+
+
     -- Obtiene un cursor para onsultar todos los registros
    -- de la tabla GRL_SISTEMAS
     function sel
@@ -148,7 +147,7 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_QP
         ,AUD_MODIFICADO_EL
         ,AUD_MODIFICADO_POR
         from GRL_SISTEMAS;
-         
+
         return c_GRL_SISTEMAS;
     exception
         when others then
@@ -157,7 +156,7 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_QP
             );
             raise;
     end sel;
-     
- 
+
+
 end GRL_SISTEMAS_QP;
 /

@@ -1,4 +1,4 @@
-CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."UTL_ERROR" 
+CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."UTL_ERROR"
 /*
 Package:       UTL_ERROR
 Descripcion:   Maneja los errores de bajo nivel
@@ -23,7 +23,7 @@ mherrera 21-Mar-2012 Agrega el format_error_backtrace en el mensaje guardado
 
 IS
     PROCEDURE insert_commit_at (p_error uer_errores_tp.uer_errores_rt)
-    
+
     IS
         PRAGMA AUTONOMOUS_TRANSACTION;
         -- Constantes para identificar el package/programa que se está ejecutando
@@ -136,6 +136,6 @@ IS
             raise_application_error (glb_user_exceptions.k_ue_error_fatal,
                                      k_modulo || ':' || DBMS_UTILITY.format_error_stack);
 
-    END informa;    
+    END informa;
 END utl_error;
 /

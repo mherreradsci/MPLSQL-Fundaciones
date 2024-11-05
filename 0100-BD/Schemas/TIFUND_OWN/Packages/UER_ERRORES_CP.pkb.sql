@@ -1,5 +1,4 @@
-CREATE OR REPLACE 
-package BODY TIFUND_OWN.UER_ERRORES_CP
+CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."UER_ERRORES_CP"
 --@!!Start
 --@!! Generado por #APPVER#:GECO V1.0 winter 2024
 --@!! Timestamp #TMSTMP#:20240822233232
@@ -15,17 +14,17 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
 * Proposito:  Package que implementa las DML o Changes sobre la tabla
 * Tabla:      UER_ERRORES
 * Descipción de la tabla:
-* Registra los errores, generalmente, capturados por el bloque "exception 
-* others". Se utiliza transversalmente cuando se adhiere al framework de 
+* Registra los errores, generalmente, capturados por el bloque "exception
+* others". Se utiliza transversalmente cuando se adhiere al framework de
 * "Desarrollo de Aplicaciones Empresariales PL/SQL"
 *
 * Cuando      Quien        Que
 * ----------- ------------ -----------------------------------------------------
 * 22-Aug-2024 MHERRERA     Creación
 *******************************************************************************/
- is 
- 
-    function siguiente_clave (p_secuencia IN VARCHAR2 DEFAULT 'UER_ERRORES_SEC') 
+ is
+
+    function siguiente_clave (p_secuencia IN VARCHAR2 DEFAULT 'UER_ERRORES_SEC')
         RETURN NUMBER
     IS
         --* Constantes para identificar el programa
@@ -45,7 +44,7 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
             );
             raise;
     end siguiente_clave;
-     
+
     -- Inserta un registro en la tabla UER_ERRORES via un record
     procedure ins(
         p_UER_ERRORES UER_ERRORES_TP.UER_ERRORES_rt
@@ -75,7 +74,7 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
             ,p_UER_ERRORES.AUD_MODIFICADO_EN
             ,p_UER_ERRORES.LOPR_ID
         );
-         
+
     exception
         when others then
             utl_error.informa (
@@ -83,14 +82,14 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
             );
             raise;
     end ins;
-     
+
     -- Inserta un registro en la tabla UER_ERRORES via la Lista de Columnas
     procedure ins(
-        p_erro_id IN UER_ERRORES_TP.erro_id_t 
-        ,p_programa IN UER_ERRORES_TP.programa_t 
+        p_erro_id IN UER_ERRORES_TP.erro_id_t
+        ,p_programa IN UER_ERRORES_TP.programa_t
         ,p_mensaje IN UER_ERRORES_TP.mensaje_t DEFAULT NULL
-        ,p_aud_creado_por IN UER_ERRORES_TP.aud_creado_por_t DEFAULT USER                  
-        ,p_aud_creado_en IN UER_ERRORES_TP.aud_creado_en_t DEFAULT LOCALTIMESTAMP        
+        ,p_aud_creado_por IN UER_ERRORES_TP.aud_creado_por_t DEFAULT USER
+        ,p_aud_creado_en IN UER_ERRORES_TP.aud_creado_en_t DEFAULT LOCALTIMESTAMP
         ,p_aud_modificado_por IN UER_ERRORES_TP.aud_modificado_por_t DEFAULT NULL
         ,p_aud_modificado_en IN UER_ERRORES_TP.aud_modificado_en_t DEFAULT NULL
         ,p_lopr_id IN UER_ERRORES_TP.lopr_id_t DEFAULT NULL
@@ -120,7 +119,7 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
             ,p_AUD_MODIFICADO_EN
             ,p_LOPR_ID
         );
-         
+
     exception
         when others then
             utl_error.informa (
@@ -128,8 +127,8 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
             );
             raise;
     end ins;
-     
-    -- Inserta (modo bulk) registros en 
+
+    -- Inserta (modo bulk) registros en
    -- la tabla UER_ERRORES vía un record de colección de columnas
     procedure ins(
         p_regs UER_ERRORES_TP.UER_ERRORES_ct
@@ -192,7 +191,7 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
                 ,v_AUD_MODIFICADO_EN(indx)
                 ,v_LOPR_ID(indx)
             );
-             
+
             v_ERRO_ID.DELETE;
             v_PROGRAMA.DELETE;
             v_MENSAJE.DELETE;
@@ -208,18 +207,18 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
                 );
                 raise;
     end ins;
-     
-    -- Inserta (modo bulk) registros en 
+
+    -- Inserta (modo bulk) registros en
    -- la tabla UER_ERRORES vía colecciones de columnas
     procedure ins(
-        p_erro_id IN UER_ERRORES_TP.erro_id_ct 
-        ,p_programa IN UER_ERRORES_TP.programa_ct 
-        ,p_mensaje IN UER_ERRORES_TP.mensaje_ct 
-        ,p_aud_creado_por IN UER_ERRORES_TP.aud_creado_por_ct 
-        ,p_aud_creado_en IN UER_ERRORES_TP.aud_creado_en_ct 
-        ,p_aud_modificado_por IN UER_ERRORES_TP.aud_modificado_por_ct 
-        ,p_aud_modificado_en IN UER_ERRORES_TP.aud_modificado_en_ct 
-        ,p_lopr_id IN UER_ERRORES_TP.lopr_id_ct 
+        p_erro_id IN UER_ERRORES_TP.erro_id_ct
+        ,p_programa IN UER_ERRORES_TP.programa_ct
+        ,p_mensaje IN UER_ERRORES_TP.mensaje_ct
+        ,p_aud_creado_por IN UER_ERRORES_TP.aud_creado_por_ct
+        ,p_aud_creado_en IN UER_ERRORES_TP.aud_creado_en_ct
+        ,p_aud_modificado_por IN UER_ERRORES_TP.aud_modificado_por_ct
+        ,p_aud_modificado_en IN UER_ERRORES_TP.aud_modificado_en_ct
+        ,p_lopr_id IN UER_ERRORES_TP.lopr_id_ct
     ) IS
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'INS';
@@ -247,7 +246,7 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
                 ,p_AUD_MODIFICADO_EN(indx)
                 ,p_LOPR_ID(indx)
             );
-             
+
         exception
             when others then
                 utl_error.informa (
@@ -255,20 +254,20 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
                 );
                 raise;
     end ins;
-     
-    -- Actualiza un registro de la tabla UER_ERRORES en función 
+
+    -- Actualiza un registro de la tabla UER_ERRORES en función
    -- de la constraint ERRO_PK
-    procedure upd_ERRO_PK( 
-        p_erro_id IN UER_ERRORES_TP.erro_id_t 
+    procedure upd_ERRO_PK(
+        p_erro_id IN UER_ERRORES_TP.erro_id_t
         ,p_UER_ERRORES IN UER_ERRORES_TP.UER_ERRORES_rt
-    ) is 
+    ) is
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'UPD_ERRO_PK';
         k_modulo CONSTANT FDC_DEFS.module_name_t := k_package || '.' || k_programa;
         -- Variables, constantes, tipos y subtipos locales
     begin
         update UER_ERRORES
-            set    
+            set
                 programa = p_UER_ERRORES.programa
                 ,mensaje = p_UER_ERRORES.mensaje
                 ,aud_creado_por = p_UER_ERRORES.aud_creado_por
@@ -276,9 +275,9 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
                 ,aud_modificado_por = p_UER_ERRORES.aud_modificado_por
                 ,aud_modificado_en = p_UER_ERRORES.aud_modificado_en
                 ,lopr_id = p_UER_ERRORES.lopr_id
-        where  
+        where
             ERRO_ID = p_erro_id;
-         
+
     exception
         when others then
             utl_error.informa (
@@ -286,9 +285,9 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
             );
             raise;
     end upd_ERRO_PK;
-     
-     
-    -- Actualiza una columna de la tabla UER_ERRORES 
+
+
+    -- Actualiza una columna de la tabla UER_ERRORES
    -- en función de un where dinámico
     function upd_por_una_columna(
         p_Nombre_Columna in varchar2,
@@ -314,8 +313,8 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
             );
             raise;
     end upd_por_una_columna;
-     
-    -- Actualiza una columna de la tabla UER_ERRORES 
+
+    -- Actualiza una columna de la tabla UER_ERRORES
    -- en función de un where dinámico
     function upd_por_una_columna(
         p_Nombre_Columna in varchar2,
@@ -341,8 +340,8 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
             );
             raise;
     end upd_por_una_columna;
-     
-    -- Actualiza una columna de la tabla UER_ERRORES 
+
+    -- Actualiza una columna de la tabla UER_ERRORES
    -- en función de un where dinámico
     function upd_por_una_columna(
         p_Nombre_Columna in varchar2,
@@ -368,11 +367,11 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
             );
             raise;
     end upd_por_una_columna;
-     
+
     -- Actualiza un conjunto de columnas de la tabla
    -- UER_ERRORES en función de la
    -- constraint ERRO_PK
-    procedure upd_ERRO_PK( 
+    procedure upd_ERRO_PK(
         p_erro_id IN UER_ERRORES_TP.erro_id_t ,
         p_programa IN UER_ERRORES_TP.programa_t DEFAULT set_as_uninvoked_parameter.nlvc2('P2')
         ,p_mensaje IN UER_ERRORES_TP.mensaje_t DEFAULT set_as_uninvoked_parameter.nlvc2('P3')
@@ -381,7 +380,7 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
         ,p_aud_modificado_por IN UER_ERRORES_TP.aud_modificado_por_t DEFAULT set_as_uninvoked_parameter.nlvc2('P6')
         ,p_aud_modificado_en IN UER_ERRORES_TP.aud_modificado_en_t DEFAULT set_as_uninvoked_parameter.nlts('P7')
         ,p_lopr_id IN UER_ERRORES_TP.lopr_id_t DEFAULT set_as_uninvoked_parameter.nlnum('P8')
-    ) IS 
+    ) IS
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'UPD_ERRO_PK';
         k_modulo CONSTANT FDC_DEFS.module_name_t := k_package || '.' || k_programa;
@@ -390,7 +389,7 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
     begin
         invocation_params_context.read_client_info (v_client_info);
         update UER_ERRORES
-            set    
+            set
                 programa = CASE WHEN INSTR(v_client_info, '#P2#') > 0 then programa ELSE p_programa END
                 ,mensaje = CASE WHEN INSTR(v_client_info, '#P3#') > 0 then mensaje ELSE p_mensaje END
                 ,aud_creado_por = CASE WHEN INSTR(v_client_info, '#P4#') > 0 then aud_creado_por ELSE p_aud_creado_por END
@@ -398,9 +397,9 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
                 ,aud_modificado_por = CASE WHEN INSTR(v_client_info, '#P6#') > 0 then aud_modificado_por ELSE p_aud_modificado_por END
                 ,aud_modificado_en = CASE WHEN INSTR(v_client_info, '#P7#') > 0 then aud_modificado_en ELSE p_aud_modificado_en END
                 ,lopr_id = CASE WHEN INSTR(v_client_info, '#P8#') > 0 then lopr_id ELSE p_lopr_id END
-        where  
+        where
             ERRO_ID = p_erro_id;
-         
+
         invocation_params_context.set_client_info (NULL);
     exception
         when others then
@@ -409,12 +408,12 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
             );
             raise;
     end upd_ERRO_PK;
-     
-     
+
+
     -- Borra registro(s) de la tabla UER_ERRORES en
    -- función de la constraint ERRO_PK
-    function del_ERRO_PK( 
-        p_erro_id IN UER_ERRORES_TP.erro_id_t 
+    function del_ERRO_PK(
+        p_erro_id IN UER_ERRORES_TP.erro_id_t
     ) RETURN SIMPLE_INTEGER IS
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'DEL_ERRO_PK';
@@ -423,9 +422,9 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
         v_num_regs SIMPLE_INTEGER := 0;
     begin
         delete UER_ERRORES
-        where  
+        where
             ERRO_ID = p_erro_id;
-         
+
         v_num_regs := SQL%ROWCOUNT;
         RETURN v_num_regs;
     exception
@@ -435,11 +434,11 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
             );
             raise;
     end del_ERRO_PK;
-     
-     
-     
-     
-    -- Borra registro(s) de la tabla UER_ERRORES en 
+
+
+
+
+    -- Borra registro(s) de la tabla UER_ERRORES en
    -- función de un where dinámico
     function del_din(
         p_where in varchar2
@@ -464,8 +463,8 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
             );
             raise;
     end del_din;
-     
-    -- Borra registro(s) de la tabla UER_ERRORES en 
+
+    -- Borra registro(s) de la tabla UER_ERRORES en
    -- función de una columna especifica
     function del_por_una_columna(
         p_Nombre_Columna in varchar2,
@@ -489,8 +488,8 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
             );
             raise;
     end del_por_una_columna;
-     
-    -- Borra registro(s) de la tabla UER_ERRORES en 
+
+    -- Borra registro(s) de la tabla UER_ERRORES en
    -- función de una columna especifica
     function del_por_una_columna(
         p_Nombre_Columna in varchar2,
@@ -514,8 +513,8 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
             );
             raise;
     end del_por_una_columna;
-     
-    -- Borra registro(s) de la tabla UER_ERRORES en 
+
+    -- Borra registro(s) de la tabla UER_ERRORES en
    -- función de una columna especifica
     function del_por_una_columna(
         p_Nombre_Columna in varchar2,
@@ -539,7 +538,7 @@ package BODY TIFUND_OWN.UER_ERRORES_CP
             );
             raise;
     end del_por_una_columna;
-     
- 
+
+
 end UER_ERRORES_CP;
 /

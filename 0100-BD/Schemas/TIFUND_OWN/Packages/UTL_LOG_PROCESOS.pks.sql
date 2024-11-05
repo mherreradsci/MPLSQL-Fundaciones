@@ -1,4 +1,4 @@
-CREATE OR REPLACE PACKAGE TIFUND_OWN."UTL_LOG_PROCESOS" 
+CREATE OR REPLACE PACKAGE "TIFUND_OWN"."UTL_LOG_PROCESOS"
 /*
 * Package: utl_log_procesos
 * Descripción: Programas para Log de Procesos

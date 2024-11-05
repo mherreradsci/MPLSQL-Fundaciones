@@ -1,5 +1,4 @@
-CREATE OR REPLACE 
-package  TIFUND_OWN.GRL_COMPOSICION_SISTEMAS_TP
+CREATE OR REPLACE PACKAGE "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_TP"
 --@!!Start
 --@!! Generado por #APPVER#:GECO V1.0 winter 2024
 --@!! Timestamp #TMSTMP#:20240822233230
@@ -12,8 +11,8 @@ package  TIFUND_OWN.GRL_COMPOSICION_SISTEMAS_TP
 * Proyecto:   Generador de APIs de tablas
 *             GAT
 * Nombre:     GRL_COMPOSICION_SISTEMAS_TP
-* Proposito:  Package de Tipos: Incluye un "subtipo" por cada columna, un "tipo 
-* colección" por cada columna, un "tipo record", un tipo "colección de records" 
+* Proposito:  Package de Tipos: Incluye un "subtipo" por cada columna, un "tipo
+* colección" por cada columna, un "tipo record", un tipo "colección de records"
 * y un tipo "ref cursor" para la tabla.
 * Tabla:      GRL_COMPOSICION_SISTEMAS
 * Descipción de la tabla:
@@ -23,11 +22,11 @@ package  TIFUND_OWN.GRL_COMPOSICION_SISTEMAS_TP
 * ----------- ------------ -----------------------------------------------------
 * 13-Aug-2024 MHERRERA     Creación
 *******************************************************************************/
- is 
- 
+ is
+
     -- Constantes para identificar el package
     K_PACKAGE CONSTANT FDC_DEFS.PACKAGE_NAME_T := 'GRL_COMPOSICION_SISTEMAS_TP';
-     
+
     subtype sist_id_sistema_t is GRL_COMPOSICION_SISTEMAS.sist_id_sistema%type;
     subtype sist_id_subsistema_t is GRL_COMPOSICION_SISTEMAS.sist_id_subsistema%type;
     subtype nombre_proyecto_t is GRL_COMPOSICION_SISTEMAS.nombre_proyecto%type;
@@ -35,7 +34,7 @@ package  TIFUND_OWN.GRL_COMPOSICION_SISTEMAS_TP
     subtype aud_creado_por_t is GRL_COMPOSICION_SISTEMAS.aud_creado_por%type;
     subtype aud_modificado_el_t is GRL_COMPOSICION_SISTEMAS.aud_modificado_el%type;
     subtype aud_modificado_por_t is GRL_COMPOSICION_SISTEMAS.aud_modificado_por%type;
-     
+
     type sist_id_sistema_ct IS TABLE OF sist_id_sistema_t INDEX BY BINARY_INTEGER;
     type sist_id_subsistema_ct IS TABLE OF sist_id_subsistema_t INDEX BY BINARY_INTEGER;
     type nombre_proyecto_ct IS TABLE OF nombre_proyecto_t INDEX BY BINARY_INTEGER;
@@ -43,10 +42,10 @@ package  TIFUND_OWN.GRL_COMPOSICION_SISTEMAS_TP
     type aud_creado_por_ct IS TABLE OF aud_creado_por_t INDEX BY BINARY_INTEGER;
     type aud_modificado_el_ct IS TABLE OF aud_modificado_el_t INDEX BY BINARY_INTEGER;
     type aud_modificado_por_ct IS TABLE OF aud_modificado_por_t INDEX BY BINARY_INTEGER;
-     
+
     subtype GRL_COMPOSICION_SISTEMAS_rt is GRL_COMPOSICION_SISTEMAS%rowtype;
     type    GRL_COMPOSICION_SISTEMAS_ct is table of GRL_COMPOSICION_SISTEMAS_rt index by binary_integer;
     type    GRL_COMPOSICION_SISTEMAS_rc is ref cursor;
-     
+
 end GRL_COMPOSICION_SISTEMAS_TP;
 /

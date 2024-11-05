@@ -1,5 +1,4 @@
-CREATE OR REPLACE 
-package BODY TIFUND_OWN.GRL_SISTEMAS_CP
+CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_CP"
 --@!!Start
 --@!! Generado por #APPVER#:GECO V1.0 winter 2024
 --@!! Timestamp #TMSTMP#:20240822233230
@@ -21,8 +20,8 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
 * ----------- ------------ -----------------------------------------------------
 * 12-Aug-2024 MHERRERA     Creación
 *******************************************************************************/
- is 
- 
+ is
+
     -- Inserta un registro en la tabla GRL_SISTEMAS via un record
     procedure ins(
         p_GRL_SISTEMAS GRL_SISTEMAS_TP.GRL_SISTEMAS_rt
@@ -52,7 +51,7 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
             ,p_GRL_SISTEMAS.AUD_MODIFICADO_EL
             ,p_GRL_SISTEMAS.AUD_MODIFICADO_POR
         );
-         
+
     exception
         when others then
             utl_error.informa (
@@ -60,13 +59,13 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
             );
             raise;
     end ins;
-     
+
     -- Inserta un registro en la tabla GRL_SISTEMAS via la Lista de Columnas
     procedure ins(
-        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t 
-        ,p_nombre IN GRL_SISTEMAS_TP.nombre_t 
+        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t
+        ,p_nombre IN GRL_SISTEMAS_TP.nombre_t
         ,p_descripcion IN GRL_SISTEMAS_TP.descripcion_t DEFAULT NULL
-        ,p_nivel_sistema IN GRL_SISTEMAS_TP.nivel_sistema_t 
+        ,p_nivel_sistema IN GRL_SISTEMAS_TP.nivel_sistema_t
         ,p_aud_creado_el IN GRL_SISTEMAS_TP.aud_creado_el_t DEFAULT SYSDATE
         ,p_aud_creado_por IN GRL_SISTEMAS_TP.aud_creado_por_t DEFAULT USER
         ,p_aud_modificado_el IN GRL_SISTEMAS_TP.aud_modificado_el_t DEFAULT NULL
@@ -97,7 +96,7 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
             ,p_AUD_MODIFICADO_EL
             ,p_AUD_MODIFICADO_POR
         );
-         
+
     exception
         when others then
             utl_error.informa (
@@ -105,8 +104,8 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
             );
             raise;
     end ins;
-     
-    -- Inserta (modo bulk) registros en 
+
+    -- Inserta (modo bulk) registros en
    -- la tabla GRL_SISTEMAS vía un record de colección de columnas
     procedure ins(
         p_regs GRL_SISTEMAS_TP.GRL_SISTEMAS_ct
@@ -169,7 +168,7 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
                 ,v_AUD_MODIFICADO_EL(indx)
                 ,v_AUD_MODIFICADO_POR(indx)
             );
-             
+
             v_ID_SISTEMA.DELETE;
             v_NOMBRE.DELETE;
             v_DESCRIPCION.DELETE;
@@ -185,18 +184,18 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
                 );
                 raise;
     end ins;
-     
-    -- Inserta (modo bulk) registros en 
+
+    -- Inserta (modo bulk) registros en
    -- la tabla GRL_SISTEMAS vía colecciones de columnas
     procedure ins(
-        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_ct 
-        ,p_nombre IN GRL_SISTEMAS_TP.nombre_ct 
-        ,p_descripcion IN GRL_SISTEMAS_TP.descripcion_ct 
-        ,p_nivel_sistema IN GRL_SISTEMAS_TP.nivel_sistema_ct 
-        ,p_aud_creado_el IN GRL_SISTEMAS_TP.aud_creado_el_ct 
-        ,p_aud_creado_por IN GRL_SISTEMAS_TP.aud_creado_por_ct 
-        ,p_aud_modificado_el IN GRL_SISTEMAS_TP.aud_modificado_el_ct 
-        ,p_aud_modificado_por IN GRL_SISTEMAS_TP.aud_modificado_por_ct 
+        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_ct
+        ,p_nombre IN GRL_SISTEMAS_TP.nombre_ct
+        ,p_descripcion IN GRL_SISTEMAS_TP.descripcion_ct
+        ,p_nivel_sistema IN GRL_SISTEMAS_TP.nivel_sistema_ct
+        ,p_aud_creado_el IN GRL_SISTEMAS_TP.aud_creado_el_ct
+        ,p_aud_creado_por IN GRL_SISTEMAS_TP.aud_creado_por_ct
+        ,p_aud_modificado_el IN GRL_SISTEMAS_TP.aud_modificado_el_ct
+        ,p_aud_modificado_por IN GRL_SISTEMAS_TP.aud_modificado_por_ct
     ) IS
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'INS';
@@ -224,7 +223,7 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
                 ,p_AUD_MODIFICADO_EL(indx)
                 ,p_AUD_MODIFICADO_POR(indx)
             );
-             
+
         exception
             when others then
                 utl_error.informa (
@@ -232,20 +231,20 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
                 );
                 raise;
     end ins;
-     
-    -- Actualiza un registro de la tabla GRL_SISTEMAS en función 
+
+    -- Actualiza un registro de la tabla GRL_SISTEMAS en función
    -- de la constraint SIST_PK
-    procedure upd_SIST_PK( 
-        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t 
+    procedure upd_SIST_PK(
+        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t
         ,p_GRL_SISTEMAS IN GRL_SISTEMAS_TP.GRL_SISTEMAS_rt
-    ) is 
+    ) is
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'UPD_SIST_PK';
         k_modulo CONSTANT FDC_DEFS.module_name_t := k_package || '.' || k_programa;
         -- Variables, constantes, tipos y subtipos locales
     begin
         update GRL_SISTEMAS
-            set    
+            set
                 nombre = p_GRL_SISTEMAS.nombre
                 ,descripcion = p_GRL_SISTEMAS.descripcion
                 ,nivel_sistema = p_GRL_SISTEMAS.nivel_sistema
@@ -253,9 +252,9 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
                 ,aud_creado_por = p_GRL_SISTEMAS.aud_creado_por
                 ,aud_modificado_el = p_GRL_SISTEMAS.aud_modificado_el
                 ,aud_modificado_por = p_GRL_SISTEMAS.aud_modificado_por
-        where  
+        where
             ID_SISTEMA = p_id_sistema;
-         
+
     exception
         when others then
             utl_error.informa (
@@ -263,9 +262,9 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
             );
             raise;
     end upd_SIST_PK;
-     
-     
-    -- Actualiza una columna de la tabla GRL_SISTEMAS 
+
+
+    -- Actualiza una columna de la tabla GRL_SISTEMAS
    -- en función de un where dinámico
     function upd_por_una_columna(
         p_Nombre_Columna in varchar2,
@@ -291,8 +290,8 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
             );
             raise;
     end upd_por_una_columna;
-     
-    -- Actualiza una columna de la tabla GRL_SISTEMAS 
+
+    -- Actualiza una columna de la tabla GRL_SISTEMAS
    -- en función de un where dinámico
     function upd_por_una_columna(
         p_Nombre_Columna in varchar2,
@@ -318,8 +317,8 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
             );
             raise;
     end upd_por_una_columna;
-     
-    -- Actualiza una columna de la tabla GRL_SISTEMAS 
+
+    -- Actualiza una columna de la tabla GRL_SISTEMAS
    -- en función de un where dinámico
     function upd_por_una_columna(
         p_Nombre_Columna in varchar2,
@@ -345,11 +344,11 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
             );
             raise;
     end upd_por_una_columna;
-     
+
     -- Actualiza un conjunto de columnas de la tabla
    -- GRL_SISTEMAS en función de la
    -- constraint SIST_PK
-    procedure upd_SIST_PK( 
+    procedure upd_SIST_PK(
         p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t ,
         p_nombre IN GRL_SISTEMAS_TP.nombre_t DEFAULT set_as_uninvoked_parameter.nlvc2('P2')
         ,p_descripcion IN GRL_SISTEMAS_TP.descripcion_t DEFAULT set_as_uninvoked_parameter.nlvc2('P3')
@@ -358,7 +357,7 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
         ,p_aud_creado_por IN GRL_SISTEMAS_TP.aud_creado_por_t DEFAULT set_as_uninvoked_parameter.nlvc2('P6')
         ,p_aud_modificado_el IN GRL_SISTEMAS_TP.aud_modificado_el_t DEFAULT set_as_uninvoked_parameter.nldate('P7')
         ,p_aud_modificado_por IN GRL_SISTEMAS_TP.aud_modificado_por_t DEFAULT set_as_uninvoked_parameter.nlvc2('P8')
-    ) IS 
+    ) IS
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'UPD_SIST_PK';
         k_modulo CONSTANT FDC_DEFS.module_name_t := k_package || '.' || k_programa;
@@ -367,7 +366,7 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
     begin
         invocation_params_context.read_client_info (v_client_info);
         update GRL_SISTEMAS
-            set    
+            set
                 nombre = CASE WHEN INSTR(v_client_info, '#P2#') > 0 then nombre ELSE p_nombre END
                 ,descripcion = CASE WHEN INSTR(v_client_info, '#P3#') > 0 then descripcion ELSE p_descripcion END
                 ,nivel_sistema = CASE WHEN INSTR(v_client_info, '#P4#') > 0 then nivel_sistema ELSE p_nivel_sistema END
@@ -375,9 +374,9 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
                 ,aud_creado_por = CASE WHEN INSTR(v_client_info, '#P6#') > 0 then aud_creado_por ELSE p_aud_creado_por END
                 ,aud_modificado_el = CASE WHEN INSTR(v_client_info, '#P7#') > 0 then aud_modificado_el ELSE p_aud_modificado_el END
                 ,aud_modificado_por = CASE WHEN INSTR(v_client_info, '#P8#') > 0 then aud_modificado_por ELSE p_aud_modificado_por END
-        where  
+        where
             ID_SISTEMA = p_id_sistema;
-         
+
         invocation_params_context.set_client_info (NULL);
     exception
         when others then
@@ -386,12 +385,12 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
             );
             raise;
     end upd_SIST_PK;
-     
-     
+
+
     -- Borra registro(s) de la tabla GRL_SISTEMAS en
    -- función de la constraint SIST_PK
-    function del_SIST_PK( 
-        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t 
+    function del_SIST_PK(
+        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t
     ) RETURN SIMPLE_INTEGER IS
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'DEL_SIST_PK';
@@ -400,9 +399,9 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
         v_num_regs SIMPLE_INTEGER := 0;
     begin
         delete GRL_SISTEMAS
-        where  
+        where
             ID_SISTEMA = p_id_sistema;
-         
+
         v_num_regs := SQL%ROWCOUNT;
         RETURN v_num_regs;
     exception
@@ -412,11 +411,11 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
             );
             raise;
     end del_SIST_PK;
-     
-     
-     
-     
-    -- Borra registro(s) de la tabla GRL_SISTEMAS en 
+
+
+
+
+    -- Borra registro(s) de la tabla GRL_SISTEMAS en
    -- función de un where dinámico
     function del_din(
         p_where in varchar2
@@ -441,8 +440,8 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
             );
             raise;
     end del_din;
-     
-    -- Borra registro(s) de la tabla GRL_SISTEMAS en 
+
+    -- Borra registro(s) de la tabla GRL_SISTEMAS en
    -- función de una columna especifica
     function del_por_una_columna(
         p_Nombre_Columna in varchar2,
@@ -466,8 +465,8 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
             );
             raise;
     end del_por_una_columna;
-     
-    -- Borra registro(s) de la tabla GRL_SISTEMAS en 
+
+    -- Borra registro(s) de la tabla GRL_SISTEMAS en
    -- función de una columna especifica
     function del_por_una_columna(
         p_Nombre_Columna in varchar2,
@@ -491,8 +490,8 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
             );
             raise;
     end del_por_una_columna;
-     
-    -- Borra registro(s) de la tabla GRL_SISTEMAS en 
+
+    -- Borra registro(s) de la tabla GRL_SISTEMAS en
    -- función de una columna especifica
     function del_por_una_columna(
         p_Nombre_Columna in varchar2,
@@ -516,7 +515,7 @@ package BODY TIFUND_OWN.GRL_SISTEMAS_CP
             );
             raise;
     end del_por_una_columna;
-     
- 
+
+
 end GRL_SISTEMAS_CP;
 /

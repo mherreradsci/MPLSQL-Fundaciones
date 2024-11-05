@@ -1,5 +1,4 @@
-CREATE OR REPLACE 
-package BODY TIFUND_OWN.ULP_DET_PROCESOS_QP
+CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_DET_PROCESOS_QP"
 --@!!Start
 --@!! Generado por #APPVER#:GECO V1.0 winter 2024
 --@!! Timestamp #TMSTMP#:20240822233231
@@ -21,20 +20,20 @@ package BODY TIFUND_OWN.ULP_DET_PROCESOS_QP
 * ----------- ------------ -----------------------------------------------------
 * 13-Aug-2024 MHERRERA     Creación
 *******************************************************************************/
- is 
- 
+ is
+
     -- Consulta la exitencia de un registro
    -- en la tabla ULP_DET_PROCESOS basado en la PK
-    function existe( 
-    p_proc_id IN ULP_DET_PROCESOS_TP.proc_id_t 
-    ,p_secuencia IN ULP_DET_PROCESOS_TP.secuencia_t 
+    function existe(
+    p_proc_id IN ULP_DET_PROCESOS_TP.proc_id_t
+    ,p_secuencia IN ULP_DET_PROCESOS_TP.secuencia_t
     ) return BOOLEAN is
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'EXISTE';
         k_modulo CONSTANT FDC_DEFS.module_name_t := k_package || '.' || k_programa;
         -- Variables, constantes, tipos y subtipos locales
         cursor un_registro is select 'x' from ULP_DET_PROCESOS
-        where  
+        where
             PROC_ID = p_proc_id
             and   SECUENCIA = p_secuencia;
         v_valor VARCHAR2(1);
@@ -52,12 +51,12 @@ package BODY TIFUND_OWN.ULP_DET_PROCESOS_QP
             );
             raise;
     end existe;
-     
-    -- Consulta un registro de tabla ULP_DET_PROCESOS 
+
+    -- Consulta un registro de tabla ULP_DET_PROCESOS
    -- basado en la constraint DEPR_PK
-    procedure sel_DEPR_PK( 
-        p_proc_id IN ULP_DET_PROCESOS_TP.proc_id_t 
-        ,p_secuencia IN ULP_DET_PROCESOS_TP.secuencia_t 
+    procedure sel_DEPR_PK(
+        p_proc_id IN ULP_DET_PROCESOS_TP.proc_id_t
+        ,p_secuencia IN ULP_DET_PROCESOS_TP.secuencia_t
         ,p_ULP_DET_PROCESOS OUT NOCOPY ULP_DET_PROCESOS_TP.ULP_DET_PROCESOS_rt
     )  is
         --* Constantes para identificar el programa
@@ -79,18 +78,18 @@ package BODY TIFUND_OWN.ULP_DET_PROCESOS_QP
             ,AUD_MODIFICADO_EL
             ,AUD_MODIFICADO_POR
             from ULP_DET_PROCESOS
-            where  
+            where
                 PROC_ID = p_proc_id
                 and   SECUENCIA = p_secuencia;
             v_found BOOLEAN;
     begin
-     
+
         open c_ULP_DET_PROCESOS;
         fetch c_ULP_DET_PROCESOS into p_ULP_DET_PROCESOS;
         v_found := c_ULP_DET_PROCESOS%FOUND;
         close c_ULP_DET_PROCESOS;
         if not v_found then raise no_data_found; end if;
-         
+
     exception
         when no_data_found then
             raise no_data_found;
@@ -102,9 +101,9 @@ package BODY TIFUND_OWN.ULP_DET_PROCESOS_QP
     end sel_DEPR_PK;
     -- Obtiene un cursor via una consulta sobre la constraint
    -- DEPR_PK de la tabla ULP_DET_PROCESOS
-    function sel_DEPR_PK( 
-    p_proc_id IN ULP_DET_PROCESOS_TP.proc_id_t 
-    ,p_secuencia IN ULP_DET_PROCESOS_TP.secuencia_t 
+    function sel_DEPR_PK(
+    p_proc_id IN ULP_DET_PROCESOS_TP.proc_id_t
+    ,p_secuencia IN ULP_DET_PROCESOS_TP.secuencia_t
     ) return ULP_DET_PROCESOS_TP.ULP_DET_PROCESOS_rc is
             --* Constantes para identificar el programa
             k_programa CONSTANT FDC_DEFS.program_name_t := 'SEL_DEPR_PK';
@@ -128,10 +127,10 @@ package BODY TIFUND_OWN.ULP_DET_PROCESOS_QP
         ,AUD_MODIFICADO_EL
         ,AUD_MODIFICADO_POR
         from ULP_DET_PROCESOS
-        where  
+        where
             PROC_ID = p_proc_id
             and   SECUENCIA = p_secuencia;
-         
+
         return cu_ULP_DET_PROCESOS;
     exception
         when others then
@@ -140,12 +139,12 @@ package BODY TIFUND_OWN.ULP_DET_PROCESOS_QP
             );
             raise;
     end sel_DEPR_PK;
-     
-     
+
+
     -- Obtiene un cursor via una consulta sobre la constraint
    -- DEPR_PROC_FK de la tabla ULP_DET_PROCESOS
-    function sel_DEPR_PROC_FK( 
-    p_proc_id IN ULP_DET_PROCESOS_TP.proc_id_t 
+    function sel_DEPR_PROC_FK(
+    p_proc_id IN ULP_DET_PROCESOS_TP.proc_id_t
     ) return ULP_DET_PROCESOS_TP.ULP_DET_PROCESOS_rc is
             --* Constantes para identificar el programa
             k_programa CONSTANT FDC_DEFS.program_name_t := 'SEL_DEPR_PROC_FK';
@@ -169,9 +168,9 @@ package BODY TIFUND_OWN.ULP_DET_PROCESOS_QP
         ,AUD_MODIFICADO_EL
         ,AUD_MODIFICADO_POR
         from ULP_DET_PROCESOS
-        where  
+        where
             PROC_ID = p_proc_id;
-         
+
         return cu_ULP_DET_PROCESOS;
     exception
         when others then
@@ -180,7 +179,7 @@ package BODY TIFUND_OWN.ULP_DET_PROCESOS_QP
             );
             raise;
     end sel_DEPR_PROC_FK;
-     
+
     -- Obtiene un cursor para onsultar todos los registros
    -- de la tabla ULP_DET_PROCESOS
     function sel
@@ -207,7 +206,7 @@ package BODY TIFUND_OWN.ULP_DET_PROCESOS_QP
         ,AUD_MODIFICADO_EL
         ,AUD_MODIFICADO_POR
         from ULP_DET_PROCESOS;
-         
+
         return c_ULP_DET_PROCESOS;
     exception
         when others then
@@ -216,7 +215,7 @@ package BODY TIFUND_OWN.ULP_DET_PROCESOS_QP
             );
             raise;
     end sel;
-     
- 
+
+
 end ULP_DET_PROCESOS_QP;
 /

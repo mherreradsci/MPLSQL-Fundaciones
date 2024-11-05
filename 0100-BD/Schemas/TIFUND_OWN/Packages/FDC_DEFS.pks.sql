@@ -1,16 +1,16 @@
-CREATE OR REPLACE PACKAGE "TIFUND_OWN"."FDC_DEFS" 
+CREATE OR REPLACE PACKAGE "TIFUND_OWN"."FDC_DEFS"
 /*
 * Proyecto:   FunDaCiones proyectos PL/SQL
 * Objetivo:   Package de definiciones generals para proyectos PL/SQL
-* 
+*
 * Historia    Quien    Descripción
 * ----------- -------- ---------------------------------------------------------
 * 29-Abr-2009 mherrera Creación
 * 15-Jul-2024 mherrera Mueve este package desde MPL a FDC_OWN
-* 15-Jul-2024 mherrera Include conditional compilation for DBMS_DB_VERSION   
+* 15-Jul-2024 mherrera Include conditional compilation for DBMS_DB_VERSION
 */
 IS
-$IF DBMS_DB_VERSION.ver_le_11_2 $THEN
+    $IF DBMS_DB_VERSION.ver_le_11_2 $THEN
 
         k_max_identifier_length   CONSTANT NUMBER (4) := 30;
         SUBTYPE package_name_t IS VARCHAR2 (30);

@@ -1,5 +1,4 @@
-CREATE OR REPLACE 
-package BODY TIFUND_OWN.GRL_COMPOSICION_SISTEMAS_QP
+CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_QP"
 --@!!Start
 --@!! Generado por #APPVER#:GECO V1.0 winter 2024
 --@!! Timestamp #TMSTMP#:20240822233230
@@ -21,20 +20,20 @@ package BODY TIFUND_OWN.GRL_COMPOSICION_SISTEMAS_QP
 * ----------- ------------ -----------------------------------------------------
 * 13-Aug-2024 MHERRERA     Creación
 *******************************************************************************/
- is 
- 
+ is
+
     -- Consulta la exitencia de un registro
    -- en la tabla GRL_COMPOSICION_SISTEMAS basado en la PK
-    function existe( 
-    p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t 
-    ,p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t 
+    function existe(
+    p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t
+    ,p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t
     ) return BOOLEAN is
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'EXISTE';
         k_modulo CONSTANT FDC_DEFS.module_name_t := k_package || '.' || k_programa;
         -- Variables, constantes, tipos y subtipos locales
         cursor un_registro is select 'x' from GRL_COMPOSICION_SISTEMAS
-        where  
+        where
             SIST_ID_SISTEMA = p_sist_id_sistema
             and   SIST_ID_SUBSISTEMA = p_sist_id_subsistema;
         v_valor VARCHAR2(1);
@@ -52,12 +51,12 @@ package BODY TIFUND_OWN.GRL_COMPOSICION_SISTEMAS_QP
             );
             raise;
     end existe;
-     
-    -- Consulta un registro de tabla GRL_COMPOSICION_SISTEMAS 
+
+    -- Consulta un registro de tabla GRL_COMPOSICION_SISTEMAS
    -- basado en la constraint COSI_PK
-    procedure sel_COSI_PK( 
-        p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t 
-        ,p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t 
+    procedure sel_COSI_PK(
+        p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t
+        ,p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t
         ,p_GRL_COMPOSICION_SISTEMAS OUT NOCOPY GRL_COMPOSICION_SISTEMAS_TP.GRL_COMPOSICION_SISTEMAS_rt
     )  is
         --* Constantes para identificar el programa
@@ -73,18 +72,18 @@ package BODY TIFUND_OWN.GRL_COMPOSICION_SISTEMAS_QP
             ,AUD_MODIFICADO_EL
             ,AUD_MODIFICADO_POR
             from GRL_COMPOSICION_SISTEMAS
-            where  
+            where
                 SIST_ID_SISTEMA = p_sist_id_sistema
                 and   SIST_ID_SUBSISTEMA = p_sist_id_subsistema;
             v_found BOOLEAN;
     begin
-     
+
         open c_GRL_COMPOSICION_SISTEMAS;
         fetch c_GRL_COMPOSICION_SISTEMAS into p_GRL_COMPOSICION_SISTEMAS;
         v_found := c_GRL_COMPOSICION_SISTEMAS%FOUND;
         close c_GRL_COMPOSICION_SISTEMAS;
         if not v_found then raise no_data_found; end if;
-         
+
     exception
         when no_data_found then
             raise no_data_found;
@@ -96,9 +95,9 @@ package BODY TIFUND_OWN.GRL_COMPOSICION_SISTEMAS_QP
     end sel_COSI_PK;
     -- Obtiene un cursor via una consulta sobre la constraint
    -- COSI_PK de la tabla GRL_COMPOSICION_SISTEMAS
-    function sel_COSI_PK( 
-    p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t 
-    ,p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t 
+    function sel_COSI_PK(
+    p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t
+    ,p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t
     ) return GRL_COMPOSICION_SISTEMAS_TP.GRL_COMPOSICION_SISTEMAS_rc is
             --* Constantes para identificar el programa
             k_programa CONSTANT FDC_DEFS.program_name_t := 'SEL_COSI_PK';
@@ -116,10 +115,10 @@ package BODY TIFUND_OWN.GRL_COMPOSICION_SISTEMAS_QP
         ,AUD_MODIFICADO_EL
         ,AUD_MODIFICADO_POR
         from GRL_COMPOSICION_SISTEMAS
-        where  
+        where
             SIST_ID_SISTEMA = p_sist_id_sistema
             and   SIST_ID_SUBSISTEMA = p_sist_id_subsistema;
-         
+
         return cu_GRL_COMPOSICION_SISTEMAS;
     exception
         when others then
@@ -128,12 +127,12 @@ package BODY TIFUND_OWN.GRL_COMPOSICION_SISTEMAS_QP
             );
             raise;
     end sel_COSI_PK;
-     
-     
+
+
     -- Obtiene un cursor via una consulta sobre la constraint
    -- COSI_SIST_COMPUESTO_DE_FK de la tabla GRL_COMPOSICION_SISTEMAS
-    function sel_COSI_SIST_COMPUESTO_DE_FK( 
-    p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t 
+    function sel_COSI_SIST_COMPUESTO_DE_FK(
+    p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t
     ) return GRL_COMPOSICION_SISTEMAS_TP.GRL_COMPOSICION_SISTEMAS_rc is
             --* Constantes para identificar el programa
             k_programa CONSTANT FDC_DEFS.program_name_t := 'SEL_COSI_SIST_COMPUESTO_DE_FK';
@@ -151,9 +150,9 @@ package BODY TIFUND_OWN.GRL_COMPOSICION_SISTEMAS_QP
         ,AUD_MODIFICADO_EL
         ,AUD_MODIFICADO_POR
         from GRL_COMPOSICION_SISTEMAS
-        where  
+        where
             SIST_ID_SUBSISTEMA = p_sist_id_subsistema;
-         
+
         return cu_GRL_COMPOSICION_SISTEMAS;
     exception
         when others then
@@ -164,8 +163,8 @@ package BODY TIFUND_OWN.GRL_COMPOSICION_SISTEMAS_QP
     end sel_COSI_SIST_COMPUESTO_DE_FK;
     -- Obtiene un cursor via una consulta sobre la constraint
    -- COSI_SIST_COMPUESTO_POR_FK de la tabla GRL_COMPOSICION_SISTEMAS
-    function sel_COSI_SIST_COMPUESTO_POR_FK( 
-    p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t 
+    function sel_COSI_SIST_COMPUESTO_POR_FK(
+    p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t
     ) return GRL_COMPOSICION_SISTEMAS_TP.GRL_COMPOSICION_SISTEMAS_rc is
             --* Constantes para identificar el programa
             k_programa CONSTANT FDC_DEFS.program_name_t := 'SEL_COSI_SIST_COMPUESTO_POR_FK';
@@ -183,9 +182,9 @@ package BODY TIFUND_OWN.GRL_COMPOSICION_SISTEMAS_QP
         ,AUD_MODIFICADO_EL
         ,AUD_MODIFICADO_POR
         from GRL_COMPOSICION_SISTEMAS
-        where  
+        where
             SIST_ID_SISTEMA = p_sist_id_sistema;
-         
+
         return cu_GRL_COMPOSICION_SISTEMAS;
     exception
         when others then
@@ -194,7 +193,7 @@ package BODY TIFUND_OWN.GRL_COMPOSICION_SISTEMAS_QP
             );
             raise;
     end sel_COSI_SIST_COMPUESTO_POR_FK;
-     
+
     -- Obtiene un cursor para onsultar todos los registros
    -- de la tabla GRL_COMPOSICION_SISTEMAS
     function sel
@@ -215,7 +214,7 @@ package BODY TIFUND_OWN.GRL_COMPOSICION_SISTEMAS_QP
         ,AUD_MODIFICADO_EL
         ,AUD_MODIFICADO_POR
         from GRL_COMPOSICION_SISTEMAS;
-         
+
         return c_GRL_COMPOSICION_SISTEMAS;
     exception
         when others then
@@ -224,7 +223,7 @@ package BODY TIFUND_OWN.GRL_COMPOSICION_SISTEMAS_QP
             );
             raise;
     end sel;
-     
- 
+
+
 end GRL_COMPOSICION_SISTEMAS_QP;
 /

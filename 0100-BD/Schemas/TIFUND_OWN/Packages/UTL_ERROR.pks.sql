@@ -1,4 +1,4 @@
-CREATE OR REPLACE PACKAGE "TIFUND_OWN"."UTL_ERROR" 
+CREATE OR REPLACE PACKAGE "TIFUND_OWN"."UTL_ERROR"
     AUTHID CURRENT_USER
 /*
 * Package:       UTL_ERROR
@@ -35,6 +35,6 @@ IS
     PROCEDURE informa (
         p_programa   IN uer_errores_tp.programa_t,
         p_mensaje    IN uer_errores_tp.mensaje_t DEFAULT DBMS_UTILITY.format_error_stack);
-        
+
 END utl_error;
 /

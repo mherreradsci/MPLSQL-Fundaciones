@@ -1,5 +1,4 @@
-CREATE OR REPLACE 
-package BODY TIFUND_OWN.ULP_PROCESOS_CP
+CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_CP"
 --@!!Start
 --@!! Generado por #APPVER#:GECO V1.0 winter 2024
 --@!! Timestamp #TMSTMP#:20241020223229
@@ -21,8 +20,8 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
 * ----------- ------------ -----------------------------------------------------
 * 18-Oct-2024 MHERRERA     Creación
 *******************************************************************************/
- is 
- 
+ is
+
     -- Inserta un registro en la tabla ULP_PROCESOS via un record
     procedure ins(
         p_ULP_PROCESOS ULP_PROCESOS_TP.ULP_PROCESOS_rt
@@ -68,7 +67,7 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
             ,p_ULP_PROCESOS.AUD_MODIFICADO_EL
             ,p_ULP_PROCESOS.AUD_MODIFICADO_POR
         );
-         
+
     exception
         when others then
             utl_error.informa (
@@ -76,23 +75,23 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
             );
             raise;
     end ins;
-     
+
     -- Inserta un registro en la tabla ULP_PROCESOS via la Lista de Columnas
     procedure ins(
-        p_id IN ULP_PROCESOS_TP.id_t 
+        p_id IN ULP_PROCESOS_TP.id_t
         ,p_proc_id IN ULP_PROCESOS_TP.proc_id_t DEFAULT NULL
-        ,p_sist_id_sistema IN ULP_PROCESOS_TP.sist_id_sistema_t 
-        ,p_nombre_proceso IN ULP_PROCESOS_TP.nombre_proceso_t 
-        ,p_fecha_inicio IN ULP_PROCESOS_TP.fecha_inicio_t DEFAULT sysdate               
+        ,p_sist_id_sistema IN ULP_PROCESOS_TP.sist_id_sistema_t
+        ,p_nombre_proceso IN ULP_PROCESOS_TP.nombre_proceso_t
+        ,p_fecha_inicio IN ULP_PROCESOS_TP.fecha_inicio_t DEFAULT sysdate
         ,p_fecha_termino IN ULP_PROCESOS_TP.fecha_termino_t DEFAULT NULL
         ,p_comentario IN ULP_PROCESOS_TP.comentario_t DEFAULT NULL
-        ,p_estado IN ULP_PROCESOS_TP.estado_t DEFAULT 'AB'                  
+        ,p_estado IN ULP_PROCESOS_TP.estado_t DEFAULT 'AB'
         ,p_usuario_cliente IN ULP_PROCESOS_TP.usuario_cliente_t DEFAULT NULL
         ,p_columna01 IN ULP_PROCESOS_TP.columna01_t DEFAULT NULL
         ,p_columna02 IN ULP_PROCESOS_TP.columna02_t DEFAULT NULL
         ,p_columna03 IN ULP_PROCESOS_TP.columna03_t DEFAULT NULL
-        ,p_aud_creado_el IN ULP_PROCESOS_TP.aud_creado_el_t DEFAULT sysdate               
-        ,p_aud_creado_por IN ULP_PROCESOS_TP.aud_creado_por_t DEFAULT user                  
+        ,p_aud_creado_el IN ULP_PROCESOS_TP.aud_creado_el_t DEFAULT sysdate
+        ,p_aud_creado_por IN ULP_PROCESOS_TP.aud_creado_por_t DEFAULT user
         ,p_aud_modificado_el IN ULP_PROCESOS_TP.aud_modificado_el_t DEFAULT NULL
         ,p_aud_modificado_por IN ULP_PROCESOS_TP.aud_modificado_por_t DEFAULT NULL
     ) IS
@@ -137,7 +136,7 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
             ,p_AUD_MODIFICADO_EL
             ,p_AUD_MODIFICADO_POR
         );
-         
+
     exception
         when others then
             utl_error.informa (
@@ -145,8 +144,8 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
             );
             raise;
     end ins;
-     
-    -- Inserta (modo bulk) registros en 
+
+    -- Inserta (modo bulk) registros en
    -- la tabla ULP_PROCESOS vía un record de colección de columnas
     procedure ins(
         p_regs ULP_PROCESOS_TP.ULP_PROCESOS_ct
@@ -257,7 +256,7 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
                 ,v_AUD_MODIFICADO_EL(indx)
                 ,v_AUD_MODIFICADO_POR(indx)
             );
-             
+
             v_ID.DELETE;
             v_PROC_ID.DELETE;
             v_SIST_ID_SISTEMA.DELETE;
@@ -281,26 +280,26 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
                 );
                 raise;
     end ins;
-     
-    -- Inserta (modo bulk) registros en 
+
+    -- Inserta (modo bulk) registros en
    -- la tabla ULP_PROCESOS vía colecciones de columnas
     procedure ins(
-        p_id IN ULP_PROCESOS_TP.id_ct 
-        ,p_proc_id IN ULP_PROCESOS_TP.proc_id_ct 
-        ,p_sist_id_sistema IN ULP_PROCESOS_TP.sist_id_sistema_ct 
-        ,p_nombre_proceso IN ULP_PROCESOS_TP.nombre_proceso_ct 
-        ,p_fecha_inicio IN ULP_PROCESOS_TP.fecha_inicio_ct 
-        ,p_fecha_termino IN ULP_PROCESOS_TP.fecha_termino_ct 
-        ,p_comentario IN ULP_PROCESOS_TP.comentario_ct 
-        ,p_estado IN ULP_PROCESOS_TP.estado_ct 
-        ,p_usuario_cliente IN ULP_PROCESOS_TP.usuario_cliente_ct 
-        ,p_columna01 IN ULP_PROCESOS_TP.columna01_ct 
-        ,p_columna02 IN ULP_PROCESOS_TP.columna02_ct 
-        ,p_columna03 IN ULP_PROCESOS_TP.columna03_ct 
-        ,p_aud_creado_el IN ULP_PROCESOS_TP.aud_creado_el_ct 
-        ,p_aud_creado_por IN ULP_PROCESOS_TP.aud_creado_por_ct 
-        ,p_aud_modificado_el IN ULP_PROCESOS_TP.aud_modificado_el_ct 
-        ,p_aud_modificado_por IN ULP_PROCESOS_TP.aud_modificado_por_ct 
+        p_id IN ULP_PROCESOS_TP.id_ct
+        ,p_proc_id IN ULP_PROCESOS_TP.proc_id_ct
+        ,p_sist_id_sistema IN ULP_PROCESOS_TP.sist_id_sistema_ct
+        ,p_nombre_proceso IN ULP_PROCESOS_TP.nombre_proceso_ct
+        ,p_fecha_inicio IN ULP_PROCESOS_TP.fecha_inicio_ct
+        ,p_fecha_termino IN ULP_PROCESOS_TP.fecha_termino_ct
+        ,p_comentario IN ULP_PROCESOS_TP.comentario_ct
+        ,p_estado IN ULP_PROCESOS_TP.estado_ct
+        ,p_usuario_cliente IN ULP_PROCESOS_TP.usuario_cliente_ct
+        ,p_columna01 IN ULP_PROCESOS_TP.columna01_ct
+        ,p_columna02 IN ULP_PROCESOS_TP.columna02_ct
+        ,p_columna03 IN ULP_PROCESOS_TP.columna03_ct
+        ,p_aud_creado_el IN ULP_PROCESOS_TP.aud_creado_el_ct
+        ,p_aud_creado_por IN ULP_PROCESOS_TP.aud_creado_por_ct
+        ,p_aud_modificado_el IN ULP_PROCESOS_TP.aud_modificado_el_ct
+        ,p_aud_modificado_por IN ULP_PROCESOS_TP.aud_modificado_por_ct
     ) IS
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'INS';
@@ -344,7 +343,7 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
                 ,p_AUD_MODIFICADO_EL(indx)
                 ,p_AUD_MODIFICADO_POR(indx)
             );
-             
+
         exception
             when others then
                 utl_error.informa (
@@ -352,20 +351,20 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
                 );
                 raise;
     end ins;
-     
-    -- Actualiza un registro de la tabla ULP_PROCESOS en función 
+
+    -- Actualiza un registro de la tabla ULP_PROCESOS en función
    -- de la constraint PROC_PK
-    procedure upd_PROC_PK( 
-        p_id IN ULP_PROCESOS_TP.id_t 
+    procedure upd_PROC_PK(
+        p_id IN ULP_PROCESOS_TP.id_t
         ,p_ULP_PROCESOS IN ULP_PROCESOS_TP.ULP_PROCESOS_rt
-    ) is 
+    ) is
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'UPD_PROC_PK';
         k_modulo CONSTANT FDC_DEFS.module_name_t := k_package || '.' || k_programa;
         -- Variables, constantes, tipos y subtipos locales
     begin
         update ULP_PROCESOS
-            set    
+            set
                 proc_id = p_ULP_PROCESOS.proc_id
                 ,sist_id_sistema = p_ULP_PROCESOS.sist_id_sistema
                 ,nombre_proceso = p_ULP_PROCESOS.nombre_proceso
@@ -381,9 +380,9 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
                 ,aud_creado_por = p_ULP_PROCESOS.aud_creado_por
                 ,aud_modificado_el = p_ULP_PROCESOS.aud_modificado_el
                 ,aud_modificado_por = p_ULP_PROCESOS.aud_modificado_por
-        where  
+        where
             ID = p_id;
-         
+
     exception
         when others then
             utl_error.informa (
@@ -391,9 +390,9 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
             );
             raise;
     end upd_PROC_PK;
-     
-     
-    -- Actualiza una columna de la tabla ULP_PROCESOS 
+
+
+    -- Actualiza una columna de la tabla ULP_PROCESOS
    -- en función de un where dinámico
     function upd_por_una_columna(
         p_Nombre_Columna in varchar2,
@@ -419,8 +418,8 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
             );
             raise;
     end upd_por_una_columna;
-     
-    -- Actualiza una columna de la tabla ULP_PROCESOS 
+
+    -- Actualiza una columna de la tabla ULP_PROCESOS
    -- en función de un where dinámico
     function upd_por_una_columna(
         p_Nombre_Columna in varchar2,
@@ -446,8 +445,8 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
             );
             raise;
     end upd_por_una_columna;
-     
-    -- Actualiza una columna de la tabla ULP_PROCESOS 
+
+    -- Actualiza una columna de la tabla ULP_PROCESOS
    -- en función de un where dinámico
     function upd_por_una_columna(
         p_Nombre_Columna in varchar2,
@@ -473,11 +472,11 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
             );
             raise;
     end upd_por_una_columna;
-     
+
     -- Actualiza un conjunto de columnas de la tabla
    -- ULP_PROCESOS en función de la
    -- constraint PROC_PK
-    procedure upd_PROC_PK( 
+    procedure upd_PROC_PK(
         p_id IN ULP_PROCESOS_TP.id_t ,
         p_proc_id IN ULP_PROCESOS_TP.proc_id_t DEFAULT set_as_uninvoked_parameter.nlnum('P2')
         ,p_sist_id_sistema IN ULP_PROCESOS_TP.sist_id_sistema_t DEFAULT set_as_uninvoked_parameter.nlvc2('P3')
@@ -494,7 +493,7 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
         ,p_aud_creado_por IN ULP_PROCESOS_TP.aud_creado_por_t DEFAULT set_as_uninvoked_parameter.nlvc2('P14')
         ,p_aud_modificado_el IN ULP_PROCESOS_TP.aud_modificado_el_t DEFAULT set_as_uninvoked_parameter.nldate('P15')
         ,p_aud_modificado_por IN ULP_PROCESOS_TP.aud_modificado_por_t DEFAULT set_as_uninvoked_parameter.nlvc2('P16')
-    ) IS 
+    ) IS
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'UPD_PROC_PK';
         k_modulo CONSTANT FDC_DEFS.module_name_t := k_package || '.' || k_programa;
@@ -503,7 +502,7 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
     begin
         invocation_params_context.read_client_info (v_client_info);
         update ULP_PROCESOS
-            set    
+            set
                 proc_id = CASE WHEN INSTR(v_client_info, '#P2#') > 0 then proc_id ELSE p_proc_id END
                 ,sist_id_sistema = CASE WHEN INSTR(v_client_info, '#P3#') > 0 then sist_id_sistema ELSE p_sist_id_sistema END
                 ,nombre_proceso = CASE WHEN INSTR(v_client_info, '#P4#') > 0 then nombre_proceso ELSE p_nombre_proceso END
@@ -519,9 +518,9 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
                 ,aud_creado_por = CASE WHEN INSTR(v_client_info, '#P14#') > 0 then aud_creado_por ELSE p_aud_creado_por END
                 ,aud_modificado_el = CASE WHEN INSTR(v_client_info, '#P15#') > 0 then aud_modificado_el ELSE p_aud_modificado_el END
                 ,aud_modificado_por = CASE WHEN INSTR(v_client_info, '#P16#') > 0 then aud_modificado_por ELSE p_aud_modificado_por END
-        where  
+        where
             ID = p_id;
-         
+
         invocation_params_context.set_client_info (NULL);
     exception
         when others then
@@ -530,12 +529,12 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
             );
             raise;
     end upd_PROC_PK;
-     
-     
+
+
     -- Borra registro(s) de la tabla ULP_PROCESOS en
    -- función de la constraint PROC_PK
-    function del_PROC_PK( 
-        p_id IN ULP_PROCESOS_TP.id_t 
+    function del_PROC_PK(
+        p_id IN ULP_PROCESOS_TP.id_t
     ) RETURN SIMPLE_INTEGER IS
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'DEL_PROC_PK';
@@ -544,9 +543,9 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
         v_num_regs SIMPLE_INTEGER := 0;
     begin
         delete ULP_PROCESOS
-        where  
+        where
             ID = p_id;
-         
+
         v_num_regs := SQL%ROWCOUNT;
         RETURN v_num_regs;
     exception
@@ -556,13 +555,13 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
             );
             raise;
     end del_PROC_PK;
-     
-     
-     
+
+
+
     -- Borra registro(s) de la tabla ULP_PROCESOS en
    -- función de la constraint PROC_PROC_FK
-    function del_PROC_PROC_FK( 
-        p_proc_id IN ULP_PROCESOS_TP.proc_id_t 
+    function del_PROC_PROC_FK(
+        p_proc_id IN ULP_PROCESOS_TP.proc_id_t
     ) RETURN SIMPLE_INTEGER IS
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'DEL_PROC_PROC_FK';
@@ -571,9 +570,9 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
         v_num_regs SIMPLE_INTEGER := 0;
     begin
         delete ULP_PROCESOS
-        where  
+        where
             PROC_ID = p_proc_id;
-         
+
         v_num_regs := SQL%ROWCOUNT;
         RETURN v_num_regs;
     exception
@@ -583,11 +582,11 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
             );
             raise;
     end del_PROC_PROC_FK;
-     
+
     -- Borra registro(s) de la tabla ULP_PROCESOS en
    -- función de la constraint ULP_PROCESOS_GRL_SISTEMAS_FK
-    function del_ULP_PROCESOS_GRL_SISTEMAS_( 
-        p_sist_id_sistema IN ULP_PROCESOS_TP.sist_id_sistema_t 
+    function del_ULP_PROCESOS_GRL_SISTEMAS_(
+        p_sist_id_sistema IN ULP_PROCESOS_TP.sist_id_sistema_t
     ) RETURN SIMPLE_INTEGER IS
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'DEL_ULP_PROCESOS_GRL_SISTEMAS_';
@@ -596,9 +595,9 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
         v_num_regs SIMPLE_INTEGER := 0;
     begin
         delete ULP_PROCESOS
-        where  
+        where
             SIST_ID_SISTEMA = p_sist_id_sistema;
-         
+
         v_num_regs := SQL%ROWCOUNT;
         RETURN v_num_regs;
     exception
@@ -608,9 +607,9 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
             );
             raise;
     end del_ULP_PROCESOS_GRL_SISTEMAS_;
-     
-     
-    -- Borra registro(s) de la tabla ULP_PROCESOS en 
+
+
+    -- Borra registro(s) de la tabla ULP_PROCESOS en
    -- función de un where dinámico
     function del_din(
         p_where in varchar2
@@ -635,8 +634,8 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
             );
             raise;
     end del_din;
-     
-    -- Borra registro(s) de la tabla ULP_PROCESOS en 
+
+    -- Borra registro(s) de la tabla ULP_PROCESOS en
    -- función de una columna especifica
     function del_por_una_columna(
         p_Nombre_Columna in varchar2,
@@ -660,8 +659,8 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
             );
             raise;
     end del_por_una_columna;
-     
-    -- Borra registro(s) de la tabla ULP_PROCESOS en 
+
+    -- Borra registro(s) de la tabla ULP_PROCESOS en
    -- función de una columna especifica
     function del_por_una_columna(
         p_Nombre_Columna in varchar2,
@@ -685,8 +684,8 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
             );
             raise;
     end del_por_una_columna;
-     
-    -- Borra registro(s) de la tabla ULP_PROCESOS en 
+
+    -- Borra registro(s) de la tabla ULP_PROCESOS en
    -- función de una columna especifica
     function del_por_una_columna(
         p_Nombre_Columna in varchar2,
@@ -710,7 +709,7 @@ package BODY TIFUND_OWN.ULP_PROCESOS_CP
             );
             raise;
     end del_por_una_columna;
-     
- 
+
+
 end ULP_PROCESOS_CP;
 /

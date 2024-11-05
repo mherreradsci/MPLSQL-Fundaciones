@@ -1,5 +1,4 @@
-CREATE OR REPLACE 
-package BODY TIFUND_OWN.UER_ERRORES_QP
+CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."UER_ERRORES_QP"
 --@!!Start
 --@!! Generado por #APPVER#:GECO V1.0 winter 2024
 --@!! Timestamp #TMSTMP#:20240822233232
@@ -15,27 +14,27 @@ package BODY TIFUND_OWN.UER_ERRORES_QP
 * Proposito:  Package para Queries: Implementa las queries para la tabla
 * Tabla:      UER_ERRORES
 * Descipción de la tabla:
-* Registra los errores, generalmente, capturados por el bloque "exception 
-* others". Se utiliza transversalmente cuando se adhiere al framework de 
+* Registra los errores, generalmente, capturados por el bloque "exception
+* others". Se utiliza transversalmente cuando se adhiere al framework de
 * "Desarrollo de Aplicaciones Empresariales PL/SQL"
 *
 * Cuando      Quien        Que
 * ----------- ------------ -----------------------------------------------------
 * 22-Aug-2024 MHERRERA     Creación
 *******************************************************************************/
- is 
- 
+ is
+
     -- Consulta la exitencia de un registro
    -- en la tabla UER_ERRORES basado en la PK
-    function existe( 
-    p_erro_id IN UER_ERRORES_TP.erro_id_t 
+    function existe(
+    p_erro_id IN UER_ERRORES_TP.erro_id_t
     ) return BOOLEAN is
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'EXISTE';
         k_modulo CONSTANT FDC_DEFS.module_name_t := k_package || '.' || k_programa;
         -- Variables, constantes, tipos y subtipos locales
         cursor un_registro is select 'x' from UER_ERRORES
-        where  
+        where
             ERRO_ID = p_erro_id;
         v_valor VARCHAR2(1);
         v_retval BOOLEAN;
@@ -52,11 +51,11 @@ package BODY TIFUND_OWN.UER_ERRORES_QP
             );
             raise;
     end existe;
-     
-    -- Consulta un registro de tabla UER_ERRORES 
+
+    -- Consulta un registro de tabla UER_ERRORES
    -- basado en la constraint ERRO_PK
-    procedure sel_ERRO_PK( 
-        p_erro_id IN UER_ERRORES_TP.erro_id_t 
+    procedure sel_ERRO_PK(
+        p_erro_id IN UER_ERRORES_TP.erro_id_t
         ,p_UER_ERRORES OUT NOCOPY UER_ERRORES_TP.UER_ERRORES_rt
     )  is
         --* Constantes para identificar el programa
@@ -73,17 +72,17 @@ package BODY TIFUND_OWN.UER_ERRORES_QP
             ,AUD_MODIFICADO_EN
             ,LOPR_ID
             from UER_ERRORES
-            where  
+            where
                 ERRO_ID = p_erro_id;
             v_found BOOLEAN;
     begin
-     
+
         open c_UER_ERRORES;
         fetch c_UER_ERRORES into p_UER_ERRORES;
         v_found := c_UER_ERRORES%FOUND;
         close c_UER_ERRORES;
         if not v_found then raise no_data_found; end if;
-         
+
     exception
         when no_data_found then
             raise no_data_found;
@@ -95,8 +94,8 @@ package BODY TIFUND_OWN.UER_ERRORES_QP
     end sel_ERRO_PK;
     -- Obtiene un cursor via una consulta sobre la constraint
    -- ERRO_PK de la tabla UER_ERRORES
-    function sel_ERRO_PK( 
-    p_erro_id IN UER_ERRORES_TP.erro_id_t 
+    function sel_ERRO_PK(
+    p_erro_id IN UER_ERRORES_TP.erro_id_t
     ) return UER_ERRORES_TP.UER_ERRORES_rc is
             --* Constantes para identificar el programa
             k_programa CONSTANT FDC_DEFS.program_name_t := 'SEL_ERRO_PK';
@@ -115,9 +114,9 @@ package BODY TIFUND_OWN.UER_ERRORES_QP
         ,AUD_MODIFICADO_EN
         ,LOPR_ID
         from UER_ERRORES
-        where  
+        where
             ERRO_ID = p_erro_id;
-         
+
         return cu_UER_ERRORES;
     exception
         when others then
@@ -126,9 +125,9 @@ package BODY TIFUND_OWN.UER_ERRORES_QP
             );
             raise;
     end sel_ERRO_PK;
-     
-     
-     
+
+
+
     -- Obtiene un cursor para onsultar todos los registros
    -- de la tabla UER_ERRORES
     function sel
@@ -150,7 +149,7 @@ package BODY TIFUND_OWN.UER_ERRORES_QP
         ,AUD_MODIFICADO_EN
         ,LOPR_ID
         from UER_ERRORES;
-         
+
         return c_UER_ERRORES;
     exception
         when others then
@@ -159,7 +158,7 @@ package BODY TIFUND_OWN.UER_ERRORES_QP
             );
             raise;
     end sel;
-     
- 
+
+
 end UER_ERRORES_QP;
 /

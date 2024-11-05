@@ -1,4 +1,4 @@
-CREATE OR REPLACE PACKAGE tifund_own.INVOCATION_PARAMS_CONTEXT
+CREATE OR REPLACE PACKAGE "TIFUND_OWN"."INVOCATION_PARAMS_CONTEXT"
 /*******************************************************************************
 Empresa:    Explora Information Technologies
 Proyecto:   Fundaciones
@@ -26,4 +26,3 @@ AS
     PROCEDURE read_client_info (p_info OUT VARCHAR2);
 END INVOCATION_PARAMS_CONTEXT;
 /
-
