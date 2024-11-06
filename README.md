@@ -3,6 +3,8 @@
 ### Modelo para registro de Sistemas y subsistemas
 ### Package con definiciones transversales: 
 * FDC_DEFS
+### Package global para definicion/redefinicion de Excepciones
+* GLB_USER_EXCEPTIONS
 ### Package utilitario para registar errores de bajo nivel. Generalmente utilizado en el manejo de excepciones OTHERS
 * UTL_ERROR
 ### Package utilitario para Log de Procesos
