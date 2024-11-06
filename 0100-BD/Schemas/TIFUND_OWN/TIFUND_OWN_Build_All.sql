@@ -14,9 +14,13 @@
 -- de scripts aparte, generalmente en el directorio GrantsToThirdParties, 
 -- para mantener un correcto Control de Configuración de Fuentes (GIT)
 
+---------------------------------- IMPORTANTE ----------------------------------
+---------------------------------- IMPORTANTE ----------------------------------
+---------------------------------- IMPORTANTE ----------------------------------
 -- Para ejecutar desde MINGW64 en Windows se debe asignar la variable de 
--- ambiente NLS_LANG a español UTF8 
+-- ambiente NLS_LANG utilizando español y UTF8 o AL32UTF8, por ejemplo: 
 --  $ NLS_LANG=SPANISH_SPAIN.UTF8 sqlplus system@centos-ora11g @TIFUND_OWN_Build_All.sql
+
 
 col C_SERVICE_NAME new_value V_SERVICE_NAME
 col C_DT new_value V_DT
@@ -31,11 +35,15 @@ set echo on
 WHENEVER SQLERROR EXIT SQL.SQLCODE; -- Incluir siempre
 WHENEVER OSERROR EXIT FAILURE;
 
+-- Valida Language and encoding
+@../../../0400-Utilities/eTest_NLS_Plus_Encoding.sql
+
 -- DROP_OWNER_AND_ROLE='Yes'/'No' First time must be 'No'
 DEFINE DROP_OWNER_AND_ROLE='Yes' 
 
 alter session set NLS_TERRITORY=CHILE;
 alter session set NLS_LANGUAGE=SPANISH;
+
 
 
 @./Roles/TIFUND_OWN_DEVELOP_ROL.sql;
@@ -84,53 +92,53 @@ PROMPT # Tables
 --XXX1@./Constraints/ULP_DET_PROCESOS_FK.sql;
 
 PROMPT ### Packages
-@./Packages/FDC_DEFS.pks;
-@./Packages/GLB_USER_EXCEPTIONS.pks;
+@./Packages/FDC_DEFS.pks.sql;
+@./Packages/GLB_USER_EXCEPTIONS.pks.sql;
 
-@./Packages/INVOCATION_PARAMS_CONTEXT.pks;
-@./Packages/SET_AS_UNINVOKED_PARAMETER.pks;
+@./Packages/INVOCATION_PARAMS_CONTEXT.pks.sql;
+@./Packages/SET_AS_UNINVOKED_PARAMETER.pks.sql;
 
-@./Packages/UER_ERRORES_TP.pks;
-@./Packages/UER_ERRORES_CP.pks;
-@./Packages/UER_ERRORES_QP.pks;
-@./Packages/UTL_ERROR.pks;
+@./Packages/UER_ERRORES_TP.pks.sql;
+@./Packages/UER_ERRORES_CP.pks.sql;
+@./Packages/UER_ERRORES_QP.pks.sql;
+@./Packages/UTL_ERROR.pks.sql;
 
-@./Packages/GRL_SISTEMAS_TP.pks;
-@./Packages/GRL_SISTEMAS_QP.pks;
-@./Packages/GRL_SISTEMAS_CP.pks;
-@./Packages/GRL_COMPOSICION_SISTEMAS_TP.pks;
-@./Packages/GRL_COMPOSICION_SISTEMAS_QP.pks;
-@./Packages/GRL_COMPOSICION_SISTEMAS_CP.pks;
+@./Packages/GRL_SISTEMAS_TP.pks.sql;
+@./Packages/GRL_SISTEMAS_QP.pks.sql;
+@./Packages/GRL_SISTEMAS_CP.pks.sql;
+@./Packages/GRL_COMPOSICION_SISTEMAS_TP.pks.sql;
+@./Packages/GRL_COMPOSICION_SISTEMAS_QP.pks.sql;
+@./Packages/GRL_COMPOSICION_SISTEMAS_CP.pks.sql;
 
-@./Packages/ULP_PROCESOS_TP.pks;
-@./Packages/ULP_PROCESOS_QP.pks;
-@./Packages/ULP_PROCESOS_CP.pks;
+@./Packages/ULP_PROCESOS_TP.pks.sql;
+@./Packages/ULP_PROCESOS_QP.pks.sql;
+@./Packages/ULP_PROCESOS_CP.pks.sql;
 
-@./Packages/ULP_DET_PROCESOS_TP.pks;
-@./Packages/ULP_DET_PROCESOS_QP.pks;
-@./Packages/ULP_DET_PROCESOS_CP.pks;
-@./Packages/ULP_DET_PROCESOS_XP.pks;
-@./Packages/UTL_LOG_PROCESOS.pks;
+@./Packages/ULP_DET_PROCESOS_TP.pks.sql;
+@./Packages/ULP_DET_PROCESOS_QP.pks.sql;
+@./Packages/ULP_DET_PROCESOS_CP.pks.sql;
+@./Packages/ULP_DET_PROCESOS_XP.pks.sql;
+@./Packages/UTL_LOG_PROCESOS.pks.sql;
 
-PROMPT Package Bodies
-@./PackageBodies/UER_ERRORES_CP.pkb;
-@./PackageBodies/UER_ERRORES_QP.pkb;
-@./PackageBodies/UTL_ERROR.pkb;
+PROMPT ### Package Bodies
+@./Packages/UER_ERRORES_CP.pkb.sql;
+@./Packages/UER_ERRORES_QP.pkb.sql;
+@./Packages/UTL_ERROR.pkb.sql;
 
-@./PackageBodies/INVOCATION_PARAMS_CONTEXT.pkb;
-@./PackageBodies/SET_AS_UNINVOKED_PARAMETER.pkb;
+@./Packages/INVOCATION_PARAMS_CONTEXT.pkb.sql;
+@./Packages/SET_AS_UNINVOKED_PARAMETER.pkb.sql;
 
-@./PackageBodies/GRL_SISTEMAS_QP.pkb;
-@./PackageBodies/GRL_SISTEMAS_CP.pkb;
-@./PackageBodies/GRL_COMPOSICION_SISTEMAS_QP.pkb;
-@./PackageBodies/GRL_COMPOSICION_SISTEMAS_CP.pkb;
+@./Packages/GRL_SISTEMAS_QP.pkb.sql;
+@./Packages/GRL_SISTEMAS_CP.pkb.sql;
+@./Packages/GRL_COMPOSICION_SISTEMAS_QP.pkb.sql;
+@./Packages/GRL_COMPOSICION_SISTEMAS_CP.pkb.sql;
 
-@./PackageBodies/ULP_PROCESOS_QP.pkb;
-@./PackageBodies/ULP_PROCESOS_CP.pkb;
-@./PackageBodies/ULP_DET_PROCESOS_QP.pkb;
-@./PackageBodies/ULP_DET_PROCESOS_CP.pkb;
-@./PackageBodies/ULP_DET_PROCESOS_XP.pkb;
-@./PackageBodies/UTL_LOG_PROCESOS.pkb;
+@./Packages/ULP_PROCESOS_QP.pkb.sql;
+@./Packages/ULP_PROCESOS_CP.pkb.sql;
+@./Packages/ULP_DET_PROCESOS_QP.pkb.sql;
+@./Packages/ULP_DET_PROCESOS_CP.pkb.sql;
+@./Packages/ULP_DET_PROCESOS_XP.pkb.sql;
+@./Packages/UTL_LOG_PROCESOS.pkb.sql;
 @./Functions/CHECK_EXISTS.fnc.sql;
 
 @./Synonyms/PUBLIC_SYNONYMS.sql
