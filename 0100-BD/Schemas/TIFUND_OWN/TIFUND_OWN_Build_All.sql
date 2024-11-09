@@ -35,15 +35,15 @@ set echo on
 WHENEVER SQLERROR EXIT SQL.SQLCODE; -- Incluir siempre
 WHENEVER OSERROR EXIT FAILURE;
 
+alter session set NLS_TERRITORY=CHILE;
+alter session set NLS_LANGUAGE=SPANISH;
+
+
 -- Valida Language and encoding
 @../../../0400-Utilities/eTest_NLS_Plus_Encoding.sql
 
 -- DROP_OWNER_AND_ROLE='Yes'/'No' First time must be 'No'
 DEFINE DROP_OWNER_AND_ROLE='Yes' 
-
-alter session set NLS_TERRITORY=CHILE;
-alter session set NLS_LANGUAGE=SPANISH;
-
 
 
 @./Roles/TIFUND_OWN_DEVELOP_ROL.sql;
