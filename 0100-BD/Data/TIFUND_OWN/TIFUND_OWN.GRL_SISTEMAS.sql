@@ -1,4 +1,4 @@
-﻿set define off
+set define off
 -- Fecha de generación:23-10-2024 01:40:00
 INSERT INTO TIFUND_OWN.GRL_SISTEMAS(ID_SISTEMA, NOMBRE, DESCRIPCION, NIVEL_SISTEMA) VALUES (q'<DETO>',q'<Developer Tools PL/SQL>',q'<Utilidades para desarrolladores de proyectos PL/SQL, por ejemplo: Validador de Buenas Prácticas PL/SQL>',1);
 INSERT INTO TIFUND_OWN.GRL_SISTEMAS(ID_SISTEMA, NOMBRE, DESCRIPCION, NIVEL_SISTEMA) VALUES (q'<FUND>',q'<Fundaciones PL/SQL>',q'<Componentes fundacionales para proyectos PL/SQL>',1);
