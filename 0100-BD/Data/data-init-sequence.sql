@@ -1,7 +1,16 @@
 WHENEVER SQLERROR EXIT SQL.SQLCODE
+WHENEVER OSERROR EXIT FAILURE
+
 SET DEFINE OFF
 
---set echo on
+alter session set NLS_TERRITORY=CHILE;
+alter session set NLS_LANGUAGE=SPANISH;
+
+
+-- Valida Language and encoding
+@../../0400-Utilities/eTest_NLS_Plus_Encoding.sql
+
+
 
 --delete TIFUND_OWN.GRL_COMPOSICION_SISTEMAS;
 --delete TIFUND_OWN.GRL_SISTEMAS;
