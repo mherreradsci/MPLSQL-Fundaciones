@@ -97,6 +97,8 @@ PROMPT ### Packages
 
 @./Packages/INVOCATION_PARAMS_CONTEXT.pks.sql;
 @./Packages/SET_AS_UNINVOKED_PARAMETER.pks.sql;
+@./Packages/FDC_UTILITY.pks.sql;
+
 
 @./Packages/UER_ERRORES_TP.pks.sql;
 @./Packages/UER_ERRORES_CP.pks.sql;
@@ -139,7 +141,11 @@ PROMPT ### Package Bodies
 @./Packages/ULP_DET_PROCESOS_CP.pkb.sql;
 @./Packages/ULP_DET_PROCESOS_XP.pkb.sql;
 @./Packages/UTL_LOG_PROCESOS.pkb.sql;
+
+@./Packages/FDC_UTILITY.pkb.sql;
+
 @./Functions/CHECK_EXISTS.fnc.sql;
+
 
 @./Synonyms/PUBLIC_SYNONYMS.sql
 
