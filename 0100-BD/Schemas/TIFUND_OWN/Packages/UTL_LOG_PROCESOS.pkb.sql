@@ -10,6 +10,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."UTL_LOG_PROCESOS"
 * 17-Dic-2004 mherrera Función: inicia_log: Se agregan los parámetros
 *                      p_id_sistema, p_id_subsistema y p_usuario_cliente
 * 20-Oct-2024 mherrera Se eleimina p_id_subsistema debido a cambio del modelo.
+* 13-Mar-2025 mherrera Cambia nombre de columna id_sistema por sist_codigo en
 *
 --------------------------------------------------------------------------------
 */
