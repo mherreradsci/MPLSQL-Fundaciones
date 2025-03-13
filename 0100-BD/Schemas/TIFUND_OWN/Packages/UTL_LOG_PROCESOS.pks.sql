@@ -44,7 +44,7 @@ AS
     ---------------------------------------------------------------------------*/
     FUNCTION inicia_log (
         p_proceso_maestro   IN ulp_procesos_tp.proc_id_t DEFAULT NULL,
-        p_id_sistema        IN grl_composicion_sistemas_tp.sist_id_sistema_t DEFAULT 'NONAME',
+        p_id_sistema        IN grl_sistemas_tp.sist_codigo_t DEFAULT 'NONAME',
         p_nombre_proceso    IN ulp_procesos_tp.nombre_proceso_t,    -- Package
         p_comentario        IN ulp_procesos_tp.comentario_t DEFAULT NULL,
         p_usuario_cliente   IN ulp_procesos_tp.usuario_cliente_t DEFAULT NULL,

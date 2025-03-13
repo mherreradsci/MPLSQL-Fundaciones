@@ -27,7 +27,7 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."GRL_SISTEMAS_TP"
     -- Constantes para identificar el package
     K_PACKAGE CONSTANT FDC_DEFS.PACKAGE_NAME_T := 'GRL_SISTEMAS_TP';
 
-    subtype id_sistema_t is GRL_SISTEMAS.id_sistema%type;
+    subtype SIST_CODIGO_t is GRL_SISTEMAS.SIST_CODIGO%type;
     subtype nombre_t is GRL_SISTEMAS.nombre%type;
     subtype descripcion_t is GRL_SISTEMAS.descripcion%type;
     subtype nivel_sistema_t is GRL_SISTEMAS.nivel_sistema%type;
@@ -36,7 +36,7 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."GRL_SISTEMAS_TP"
     subtype aud_modificado_el_t is GRL_SISTEMAS.aud_modificado_el%type;
     subtype aud_modificado_por_t is GRL_SISTEMAS.aud_modificado_por%type;
 
-    type id_sistema_ct IS TABLE OF id_sistema_t INDEX BY BINARY_INTEGER;
+    type SIST_CODIGO_ct IS TABLE OF SIST_CODIGO_t INDEX BY BINARY_INTEGER;
     type nombre_ct IS TABLE OF nombre_t INDEX BY BINARY_INTEGER;
     type descripcion_ct IS TABLE OF descripcion_t INDEX BY BINARY_INTEGER;
     type nivel_sistema_ct IS TABLE OF nivel_sistema_t INDEX BY BINARY_INTEGER;

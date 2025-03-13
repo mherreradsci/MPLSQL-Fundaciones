@@ -33,7 +33,7 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."ULP_PROCESOS_CP"
     procedure ins(
         p_id IN ULP_PROCESOS_TP.id_t
         ,p_proc_id IN ULP_PROCESOS_TP.proc_id_t DEFAULT NULL
-        ,p_sist_id_sistema IN ULP_PROCESOS_TP.sist_id_sistema_t
+        ,p_sist_codigo IN ULP_PROCESOS_TP.sist_codigo_t
         ,p_nombre_proceso IN ULP_PROCESOS_TP.nombre_proceso_t
         ,p_fecha_inicio IN ULP_PROCESOS_TP.fecha_inicio_t DEFAULT sysdate
         ,p_fecha_termino IN ULP_PROCESOS_TP.fecha_termino_t DEFAULT NULL
@@ -60,7 +60,7 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."ULP_PROCESOS_CP"
     procedure ins(
         p_id IN ULP_PROCESOS_TP.id_ct
         ,p_proc_id IN ULP_PROCESOS_TP.proc_id_ct
-        ,p_sist_id_sistema IN ULP_PROCESOS_TP.sist_id_sistema_ct
+        ,p_sist_codigo IN ULP_PROCESOS_TP.sist_codigo_ct
         ,p_nombre_proceso IN ULP_PROCESOS_TP.nombre_proceso_ct
         ,p_fecha_inicio IN ULP_PROCESOS_TP.fecha_inicio_ct
         ,p_fecha_termino IN ULP_PROCESOS_TP.fecha_termino_ct
@@ -114,7 +114,7 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."ULP_PROCESOS_CP"
     procedure upd_PROC_PK(
         p_id IN ULP_PROCESOS_TP.id_t ,
         p_proc_id IN ULP_PROCESOS_TP.proc_id_t DEFAULT set_as_uninvoked_parameter.nlnum('P2')
-        ,p_sist_id_sistema IN ULP_PROCESOS_TP.sist_id_sistema_t DEFAULT set_as_uninvoked_parameter.nlvc2('P3')
+        ,p_sist_codigo IN ULP_PROCESOS_TP.sist_codigo_t DEFAULT set_as_uninvoked_parameter.nlvc2('P3')
         ,p_nombre_proceso IN ULP_PROCESOS_TP.nombre_proceso_t DEFAULT set_as_uninvoked_parameter.nlvc2('P4')
         ,p_fecha_inicio IN ULP_PROCESOS_TP.fecha_inicio_t DEFAULT set_as_uninvoked_parameter.nldate('P5')
         ,p_fecha_termino IN ULP_PROCESOS_TP.fecha_termino_t DEFAULT set_as_uninvoked_parameter.nldate('P6')
@@ -148,7 +148,7 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."ULP_PROCESOS_CP"
     -- Borra registro(s) de la tabla ULP_PROCESOS en
    -- función de la constraint ULP_PROCESOS_GRL_SISTEMAS_FK
     function del_ULP_PROCESOS_GRL_SISTEMAS_(
-        p_sist_id_sistema IN ULP_PROCESOS_TP.sist_id_sistema_t
+        p_sist_codigo IN ULP_PROCESOS_TP.sist_codigo_t
     ) RETURN SIMPLE_INTEGER;
 
 
