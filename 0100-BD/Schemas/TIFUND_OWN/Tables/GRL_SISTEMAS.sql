@@ -1,60 +1,56 @@
--- * Table: TIFUND_OWN.GRL_SISTEMAS
-CREATE TABLE "TIFUND_OWN"."GRL_SISTEMAS" 
-   (
-    "ID_SISTEMA" VARCHAR2(20), 
-    "NOMBRE" VARCHAR2(60), 
-    "DESCRIPCION" VARCHAR2(600), 
-    "NIVEL_SISTEMA" NUMBER(3,0), 
-    "AUD_CREADO_EL" DATE DEFAULT SYSDATE, 
-    "AUD_CREADO_POR" VARCHAR2(30) DEFAULT USER, 
-    "AUD_MODIFICADO_EL" DATE, 
+CREATE TABLE "TIFUND_OWN"."GRL_SISTEMAS"
+(	"SIST_CODIGO" VARCHAR2(20) NOT NULL ENABLE,
+    "NOMBRE" VARCHAR2(60) NOT NULL ENABLE,
+    "DESCRIPCION" VARCHAR2(600),
+    "NIVEL_SISTEMA" NUMBER(3,0) NOT NULL ENABLE,
+    "AUD_CREADO_EL" DATE DEFAULT SYSDATE NOT NULL ENABLE,
+    "AUD_CREADO_POR" VARCHAR2(30) DEFAULT USER NOT NULL ENABLE,
+    "AUD_MODIFICADO_EL" DATE,
     "AUD_MODIFICADO_POR" VARCHAR2(30)
-   ) SEGMENT CREATION IMMEDIATE 
-  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
- NOCOMPRESS LOGGING
-  TABLESPACE "USERS" ;
---    1 Table found.
+) SEGMENT CREATION IMMEDIATE
+PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+TABLESPACE "USERS"
+/
+ALTER TABLE "TIFUND_OWN"."GRL_SISTEMAS" ADD CONSTRAINT "SIST_PK" PRIMARY KEY ("SIST_CODIGO")
+USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS
+TABLESPACE "INDX"  ENABLE
+/
+
+-- * ***************************************************************************
 -- * Comments
-COMMENT ON COLUMN "TIFUND_OWN"."GRL_SISTEMAS"."ID_SISTEMA" IS 'Identificador / Nombre corto del sistema'
+-- * ***************************************************************************
+COMMENT ON COLUMN "TIFUND_OWN"."GRL_SISTEMAS"."SIST_CODIGO" IS 'Identificador / Nombre corto del sistema.'
 /
-COMMENT ON COLUMN "TIFUND_OWN"."GRL_SISTEMAS"."NOMBRE" IS 'Nombre del sistema'
+COMMENT ON COLUMN "TIFUND_OWN"."GRL_SISTEMAS"."NOMBRE" IS 'Nombre del sistema.'
 /
-COMMENT ON COLUMN "TIFUND_OWN"."GRL_SISTEMAS"."DESCRIPCION" IS 'Descripción breve del sistema'
+COMMENT ON COLUMN "TIFUND_OWN"."GRL_SISTEMAS"."DESCRIPCION" IS 'Descripción breve del sistema.'
 /
-COMMENT ON COLUMN "TIFUND_OWN"."GRL_SISTEMAS"."NIVEL_SISTEMA" IS 'Indica el nivel en el árbol de jerarquía de los sistemas/subsistemas'
+COMMENT ON COLUMN "TIFUND_OWN"."GRL_SISTEMAS"."NIVEL_SISTEMA" IS 'Indica el nivel en el árbol de jerarquía de los sistemas/subsistemas.'
 /
-COMMENT ON COLUMN "TIFUND_OWN"."GRL_SISTEMAS"."AUD_MODIFICADO_POR" IS 'Usuario de bd que cambió/actualizó el registro'
+COMMENT ON COLUMN "TIFUND_OWN"."GRL_SISTEMAS"."AUD_CREADO_EL" IS 'Fecha y hora en la cual fue creado el registro.'
 /
---    5 Comments found.
--- * Constraint Indexes:
--- ** Constraint Indexes: TIFUND_OWN.GRL_SISTEMAS
-CREATE UNIQUE INDEX "TIFUND_OWN"."SIST_PK" ON "TIFUND_OWN"."GRL_SISTEMAS" ("ID_SISTEMA") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  TABLESPACE "INDX" 
+COMMENT ON COLUMN "TIFUND_OWN"."GRL_SISTEMAS"."AUD_CREADO_POR" IS 'Usuario de bd que creó el registro.'
 /
---    1 Constraint indexes found.
--- * Constraints: TIFUND_OWN.GRL_SISTEMAS
-ALTER TABLE "TIFUND_OWN"."GRL_SISTEMAS" MODIFY ("ID_SISTEMA" NOT NULL ENABLE)
+COMMENT ON COLUMN "TIFUND_OWN"."GRL_SISTEMAS"."AUD_MODIFICADO_EL" IS 'Fecha y hora en la cual fue modificado el registro.'
 /
-ALTER TABLE "TIFUND_OWN"."GRL_SISTEMAS" MODIFY ("NOMBRE" NOT NULL ENABLE)
+COMMENT ON COLUMN "TIFUND_OWN"."GRL_SISTEMAS"."AUD_MODIFICADO_POR" IS 'Usuario de bd que cambió/actualizó el registro.'
 /
-ALTER TABLE "TIFUND_OWN"."GRL_SISTEMAS" MODIFY ("NIVEL_SISTEMA" NOT NULL ENABLE)
-/
-ALTER TABLE "TIFUND_OWN"."GRL_SISTEMAS" MODIFY ("AUD_CREADO_EL" NOT NULL ENABLE)
-/
-ALTER TABLE "TIFUND_OWN"."GRL_SISTEMAS" MODIFY ("AUD_CREADO_POR" NOT NULL ENABLE)
-/
-ALTER TABLE "TIFUND_OWN"."GRL_SISTEMAS" ADD CONSTRAINT "SIST_PK" PRIMARY KEY ("ID_SISTEMA")
-  USING INDEX "TIFUND_OWN"."SIST_PK"  ENABLE;
---    6 Constraints found.
--- * Non Constraint Indexes:
--- ** Non constraint Index for: TIFUND_OWN.GRL_SISTEMAS
+--    8 Comments found.
+-- * ***************************************************************************
+-- * Non constraint Index for: TIFUND_OWN.GRL_SISTEMAS
+-- * ***************************************************************************
 --    0 Non Constraint indexes found.
+-- * ***************************************************************************
 -- * Ref Constraints for: TIFUND_OWN.GRL_SISTEMAS
+-- * ***************************************************************************
 --    0 Reference constraints found.
+-- * ***************************************************************************
 -- * Sequences: TIFUND_OWN.GRL_SISTEMAS
+-- * ***************************************************************************
 --    0 Sequences found.
+-- * ***************************************************************************
 -- * Triggers for: TIFUND_OWN.GRL_SISTEMAS
+-- * ***************************************************************************
 CREATE OR REPLACE TRIGGER "TIFUND_OWN"."SIST_BI_TRG" 
     BEFORE INSERT
     ON tifund_own.grl_sistemas
@@ -78,3 +74,16 @@ END sist_bu_trg;
 ALTER TRIGGER "TIFUND_OWN"."SIST_BU_TRG" ENABLE
 /
 --    2 Triggers found.
+-- * ***************************************************************************
+-- * Public Synonyms
+-- * ***************************************************************************
+CREATE OR REPLACE PUBLIC SYNONYM "GRL_SISTEMAS" FOR "TIFUND_OWN"."GRL_SISTEMAS"
+/
+--    1 Public synonyms for GRL_SISTEMAS.
+-- * ***************************************************************************
+-- * Grants
+-- * ***************************************************************************
+GRANT DELETE, INSERT, SELECT, UPDATE ON "TIFUND_OWN"."GRL_SISTEMAS" TO "TIFUND_DEV_ROL";
+--    1 lines of grants found for GRL_SISTEMAS.
+
+-- Successful completion for GRL_SISTEMAS.

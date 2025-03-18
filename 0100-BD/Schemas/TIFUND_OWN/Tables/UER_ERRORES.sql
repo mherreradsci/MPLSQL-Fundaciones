@@ -1,20 +1,24 @@
--- * Table: TIFUND_OWN.UER_ERRORES
-CREATE TABLE "TIFUND_OWN"."UER_ERRORES" 
-   (
-    "ERRO_ID" NUMBER(10,0), 
-    "PROGRAMA" VARCHAR2(120), 
-    "MENSAJE" VARCHAR2(4000), 
-    "AUD_CREADO_POR" VARCHAR2(45) DEFAULT USER, 
-    "AUD_CREADO_EN" TIMESTAMP (6) DEFAULT SYSTIMESTAMP, 
-    "AUD_MODIFICADO_POR" VARCHAR2(45), 
-    "AUD_MODIFICADO_EN" TIMESTAMP (6), 
+CREATE TABLE "TIFUND_OWN"."UER_ERRORES"
+(	"ERRO_ID" NUMBER(10,0) NOT NULL ENABLE,
+    "PROGRAMA" VARCHAR2(120) NOT NULL ENABLE,
+    "MENSAJE" VARCHAR2(4000),
+    "AUD_CREADO_POR" VARCHAR2(45) DEFAULT USER NOT NULL ENABLE,
+    "AUD_CREADO_EN" TIMESTAMP (6) DEFAULT SYSTIMESTAMP NOT NULL ENABLE,
+    "AUD_MODIFICADO_POR" VARCHAR2(45),
+    "AUD_MODIFICADO_EN" TIMESTAMP (6),
     "LOPR_ID" NUMBER(10,0)
-   ) SEGMENT CREATION DEFERRED 
-  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
- NOCOMPRESS LOGGING
-  TABLESPACE "USERS" ;
---    1 Table found.
+) SEGMENT CREATION IMMEDIATE
+PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+TABLESPACE "USERS"
+/
+ALTER TABLE "TIFUND_OWN"."UER_ERRORES" ADD CONSTRAINT "ERRO_PK" PRIMARY KEY ("ERRO_ID")
+USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS
+TABLESPACE "INDX"  ENABLE
+/
+
+-- * ***************************************************************************
 -- * Comments
+-- * ***************************************************************************
 COMMENT ON COLUMN "TIFUND_OWN"."UER_ERRORES"."ERRO_ID" IS 'Id de Valores Generales'
 /
 COMMENT ON COLUMN "TIFUND_OWN"."UER_ERRORES"."PROGRAMA" IS 'Programa ejecutado'
@@ -34,40 +38,28 @@ COMMENT ON COLUMN "TIFUND_OWN"."UER_ERRORES"."LOPR_ID" IS 'Id del log de proceso
 COMMENT ON TABLE "TIFUND_OWN"."UER_ERRORES"  IS 'Registra los errores, generalmente, capturados por el bloque "exception others". Se utiliza transversalmente cuando se adhiere al framework de "Desarrollo de Aplicaciones Empresariales PL/SQL"'
 /
 --    9 Comments found.
--- * Constraint Indexes:
--- ** Constraint Indexes: TIFUND_OWN.UER_ERRORES
-CREATE UNIQUE INDEX "TIFUND_OWN"."ERRO_PK" ON "TIFUND_OWN"."UER_ERRORES" ("ERRO_ID") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  TABLESPACE "INDX" 
-/
---    1 Constraint indexes found.
--- * Constraints: TIFUND_OWN.UER_ERRORES
-ALTER TABLE "TIFUND_OWN"."UER_ERRORES" MODIFY ("ERRO_ID" NOT NULL ENABLE)
-/
-ALTER TABLE "TIFUND_OWN"."UER_ERRORES" MODIFY ("PROGRAMA" NOT NULL ENABLE)
-/
-ALTER TABLE "TIFUND_OWN"."UER_ERRORES" MODIFY ("AUD_CREADO_POR" NOT NULL ENABLE)
-/
-ALTER TABLE "TIFUND_OWN"."UER_ERRORES" MODIFY ("AUD_CREADO_EN" NOT NULL ENABLE)
-/
-ALTER TABLE "TIFUND_OWN"."UER_ERRORES" ADD CONSTRAINT "ERRO_PK" PRIMARY KEY ("ERRO_ID")
-  USING INDEX "TIFUND_OWN"."ERRO_PK"  ENABLE;
---    5 Constraints found.
--- * Non Constraint Indexes:
--- ** Non constraint Index for: TIFUND_OWN.UER_ERRORES
+-- * ***************************************************************************
+-- * Non constraint Index for: TIFUND_OWN.UER_ERRORES
+-- * ***************************************************************************
 CREATE INDEX "TIFUND_OWN"."ERRO_IX01" ON "TIFUND_OWN"."UER_ERRORES" ("PROGRAMA") 
   PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   TABLESPACE "INDX" 
 /
 --    1 Non Constraint indexes found.
+-- * ***************************************************************************
 -- * Ref Constraints for: TIFUND_OWN.UER_ERRORES
+-- * ***************************************************************************
 --    0 Reference constraints found.
+-- * ***************************************************************************
 -- * Sequences: TIFUND_OWN.UER_ERRORES
-CREATE SEQUENCE  "TIFUND_OWN"."UER_ERRORES_SEC"  MINVALUE 1 MAXVALUE 999999999999999999999999999 INCREMENT BY 1 START WITH 1 NOCACHE  NOORDER  NOCYCLE
+-- * ***************************************************************************
+CREATE SEQUENCE  "TIFUND_OWN"."UER_ERRORES_SEC"  MINVALUE 1 MAXVALUE 999999999999999999999999999 INCREMENT BY 1 START WITH 159 NOCACHE  NOORDER  NOCYCLE 
 /
 
 --    1 Sequences found.
+-- * ***************************************************************************
 -- * Triggers for: TIFUND_OWN.UER_ERRORES
+-- * ***************************************************************************
 CREATE OR REPLACE TRIGGER "TIFUND_OWN"."ERRO_BI_TRG" 
 --DECLARE
 --    v_proxy_user   uer_errores.aud_creado_por%TYPE;
@@ -80,7 +72,7 @@ BEGIN
     --v_proxy_user := SYS_CONTEXT ('USERENV', 'PROXY_USER');
 
     :new.aud_creado_por := NVL(SYS_CONTEXT ('USERENV', 'PROXY_USER'), USER);
-    
+
     --    IF v_proxy_user IS NOT NULL THEN
     --        :new.aud_creado_por := v_proxy_user;
     --    ELSE
@@ -110,3 +102,16 @@ END;
 ALTER TRIGGER "TIFUND_OWN"."ERRO_BU_TRG" ENABLE
 /
 --    2 Triggers found.
+-- * ***************************************************************************
+-- * Public Synonyms
+-- * ***************************************************************************
+CREATE OR REPLACE PUBLIC SYNONYM "UER_ERRORES" FOR "TIFUND_OWN"."UER_ERRORES"
+/
+--    1 Public synonyms for UER_ERRORES.
+-- * ***************************************************************************
+-- * Grants
+-- * ***************************************************************************
+GRANT DELETE, INSERT, SELECT, UPDATE ON "TIFUND_OWN"."UER_ERRORES" TO "TIFUND_DEV_ROL";
+--    1 lines of grants found for UER_ERRORES.
+
+-- Successful completion for UER_ERRORES.
