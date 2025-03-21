@@ -25,7 +25,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_QP"
     -- Consulta la exitencia de un registro
    -- en la tabla GRL_SISTEMAS basado en la PK
     function existe(
-    p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t
+    p_sist_codigo IN GRL_SISTEMAS_TP.sist_codigo_t
     ) return BOOLEAN is
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'EXISTE';
@@ -33,7 +33,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_QP"
         -- Variables, constantes, tipos y subtipos locales
         cursor un_registro is select 'x' from GRL_SISTEMAS
         where
-            ID_SISTEMA = p_id_sistema;
+            sist_codigo = p_sist_codigo;
         v_valor VARCHAR2(1);
         v_retval BOOLEAN;
     begin
@@ -53,7 +53,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_QP"
     -- Consulta un registro de tabla GRL_SISTEMAS
    -- basado en la constraint SIST_PK
     procedure sel_SIST_PK(
-        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t
+        p_sist_codigo IN GRL_SISTEMAS_TP.sist_codigo_t
         ,p_GRL_SISTEMAS OUT NOCOPY GRL_SISTEMAS_TP.GRL_SISTEMAS_rt
     )  is
         --* Constantes para identificar el programa
@@ -61,7 +61,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_QP"
         k_modulo CONSTANT FDC_DEFS.module_name_t := k_package || '.' || k_programa;
         -- Variables, constantes, tipos y subtipos locales
         cursor c_GRL_SISTEMAS is select
-            ID_SISTEMA
+            sist_codigo
             ,NOMBRE
             ,DESCRIPCION
             ,NIVEL_SISTEMA
@@ -71,7 +71,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_QP"
             ,AUD_MODIFICADO_POR
             from GRL_SISTEMAS
             where
-                ID_SISTEMA = p_id_sistema;
+                sist_codigo = p_sist_codigo;
             v_found BOOLEAN;
     begin
 
@@ -93,7 +93,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_QP"
     -- Obtiene un cursor via una consulta sobre la constraint
    -- SIST_PK de la tabla GRL_SISTEMAS
     function sel_SIST_PK(
-    p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t
+    p_sist_codigo IN GRL_SISTEMAS_TP.sist_codigo_t
     ) return GRL_SISTEMAS_TP.GRL_SISTEMAS_rc is
             --* Constantes para identificar el programa
             k_programa CONSTANT FDC_DEFS.program_name_t := 'SEL_SIST_PK';
@@ -103,7 +103,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_QP"
     begin
         open cu_GRL_SISTEMAS for
         select
-        ID_SISTEMA
+        sist_codigo
         ,NOMBRE
         ,DESCRIPCION
         ,NIVEL_SISTEMA
@@ -113,7 +113,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_QP"
         ,AUD_MODIFICADO_POR
         from GRL_SISTEMAS
         where
-            ID_SISTEMA = p_id_sistema;
+            sist_codigo = p_sist_codigo;
 
         return cu_GRL_SISTEMAS;
     exception
@@ -138,7 +138,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_QP"
     begin
         open c_GRL_SISTEMAS for
         select
-        ID_SISTEMA
+        sist_codigo
         ,NOMBRE
         ,DESCRIPCION
         ,NIVEL_SISTEMA

@@ -25,8 +25,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_QP"
     -- Consulta la exitencia de un registro
    -- en la tabla GRL_COMPOSICION_SISTEMAS basado en la PK
     function existe(
-    p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t
-    ,p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t
+    p_sist_codigo IN GRL_COMPOSICION_SISTEMAS_TP.sist_codigo_t
+    ,p_sist_codigo_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_codigo_subsistema_t
     ) return BOOLEAN is
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'EXISTE';
@@ -34,8 +34,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_QP"
         -- Variables, constantes, tipos y subtipos locales
         cursor un_registro is select 'x' from GRL_COMPOSICION_SISTEMAS
         where
-            SIST_ID_SISTEMA = p_sist_id_sistema
-            and   SIST_ID_SUBSISTEMA = p_sist_id_subsistema;
+            sist_codigo = p_sist_codigo
+            and   sist_codigo_subsistema = p_sist_codigo_subsistema;
         v_valor VARCHAR2(1);
         v_retval BOOLEAN;
     begin
@@ -55,8 +55,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_QP"
     -- Consulta un registro de tabla GRL_COMPOSICION_SISTEMAS
    -- basado en la constraint COSI_PK
     procedure sel_COSI_PK(
-        p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t
-        ,p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t
+        p_sist_codigo IN GRL_COMPOSICION_SISTEMAS_TP.sist_codigo_t
+        ,p_sist_codigo_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_codigo_subsistema_t
         ,p_GRL_COMPOSICION_SISTEMAS OUT NOCOPY GRL_COMPOSICION_SISTEMAS_TP.GRL_COMPOSICION_SISTEMAS_rt
     )  is
         --* Constantes para identificar el programa
@@ -64,8 +64,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_QP"
         k_modulo CONSTANT FDC_DEFS.module_name_t := k_package || '.' || k_programa;
         -- Variables, constantes, tipos y subtipos locales
         cursor c_GRL_COMPOSICION_SISTEMAS is select
-            SIST_ID_SISTEMA
-            ,SIST_ID_SUBSISTEMA
+            sist_codigo
+            ,sist_codigo_subsistema
             ,NOMBRE_PROYECTO
             ,AUD_CREADO_EL
             ,AUD_CREADO_POR
@@ -73,8 +73,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_QP"
             ,AUD_MODIFICADO_POR
             from GRL_COMPOSICION_SISTEMAS
             where
-                SIST_ID_SISTEMA = p_sist_id_sistema
-                and   SIST_ID_SUBSISTEMA = p_sist_id_subsistema;
+                sist_codigo = p_sist_codigo
+                and   sist_codigo_subsistema = p_sist_codigo_subsistema;
             v_found BOOLEAN;
     begin
 
@@ -96,8 +96,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_QP"
     -- Obtiene un cursor via una consulta sobre la constraint
    -- COSI_PK de la tabla GRL_COMPOSICION_SISTEMAS
     function sel_COSI_PK(
-    p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t
-    ,p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t
+    p_sist_codigo IN GRL_COMPOSICION_SISTEMAS_TP.sist_codigo_t
+    ,p_sist_codigo_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_codigo_subsistema_t
     ) return GRL_COMPOSICION_SISTEMAS_TP.GRL_COMPOSICION_SISTEMAS_rc is
             --* Constantes para identificar el programa
             k_programa CONSTANT FDC_DEFS.program_name_t := 'SEL_COSI_PK';
@@ -107,8 +107,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_QP"
     begin
         open cu_GRL_COMPOSICION_SISTEMAS for
         select
-        SIST_ID_SISTEMA
-        ,SIST_ID_SUBSISTEMA
+        sist_codigo
+        ,sist_codigo_subsistema
         ,NOMBRE_PROYECTO
         ,AUD_CREADO_EL
         ,AUD_CREADO_POR
@@ -116,8 +116,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_QP"
         ,AUD_MODIFICADO_POR
         from GRL_COMPOSICION_SISTEMAS
         where
-            SIST_ID_SISTEMA = p_sist_id_sistema
-            and   SIST_ID_SUBSISTEMA = p_sist_id_subsistema;
+            sist_codigo = p_sist_codigo
+            and   sist_codigo_subsistema = p_sist_codigo_subsistema;
 
         return cu_GRL_COMPOSICION_SISTEMAS;
     exception
@@ -132,7 +132,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_QP"
     -- Obtiene un cursor via una consulta sobre la constraint
    -- COSI_SIST_COMPUESTO_DE_FK de la tabla GRL_COMPOSICION_SISTEMAS
     function sel_COSI_SIST_COMPUESTO_DE_FK(
-    p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t
+    p_sist_codigo_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_codigo_subsistema_t
     ) return GRL_COMPOSICION_SISTEMAS_TP.GRL_COMPOSICION_SISTEMAS_rc is
             --* Constantes para identificar el programa
             k_programa CONSTANT FDC_DEFS.program_name_t := 'SEL_COSI_SIST_COMPUESTO_DE_FK';
@@ -142,8 +142,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_QP"
     begin
         open cu_GRL_COMPOSICION_SISTEMAS for
         select
-        SIST_ID_SISTEMA
-        ,SIST_ID_SUBSISTEMA
+        sist_codigo
+        ,sist_codigo_subsistema
         ,NOMBRE_PROYECTO
         ,AUD_CREADO_EL
         ,AUD_CREADO_POR
@@ -151,7 +151,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_QP"
         ,AUD_MODIFICADO_POR
         from GRL_COMPOSICION_SISTEMAS
         where
-            SIST_ID_SUBSISTEMA = p_sist_id_subsistema;
+            sist_codigo_subsistema = p_sist_codigo_subsistema;
 
         return cu_GRL_COMPOSICION_SISTEMAS;
     exception
@@ -164,7 +164,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_QP"
     -- Obtiene un cursor via una consulta sobre la constraint
    -- COSI_SIST_COMPUESTO_POR_FK de la tabla GRL_COMPOSICION_SISTEMAS
     function sel_COSI_SIST_COMPUESTO_POR_FK(
-    p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t
+    p_sist_codigo IN GRL_COMPOSICION_SISTEMAS_TP.sist_codigo_t
     ) return GRL_COMPOSICION_SISTEMAS_TP.GRL_COMPOSICION_SISTEMAS_rc is
             --* Constantes para identificar el programa
             k_programa CONSTANT FDC_DEFS.program_name_t := 'SEL_COSI_SIST_COMPUESTO_POR_FK';
@@ -174,8 +174,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_QP"
     begin
         open cu_GRL_COMPOSICION_SISTEMAS for
         select
-        SIST_ID_SISTEMA
-        ,SIST_ID_SUBSISTEMA
+        sist_codigo
+        ,sist_codigo_subsistema
         ,NOMBRE_PROYECTO
         ,AUD_CREADO_EL
         ,AUD_CREADO_POR
@@ -183,7 +183,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_QP"
         ,AUD_MODIFICADO_POR
         from GRL_COMPOSICION_SISTEMAS
         where
-            SIST_ID_SISTEMA = p_sist_id_sistema;
+            sist_codigo = p_sist_codigo;
 
         return cu_GRL_COMPOSICION_SISTEMAS;
     exception
@@ -206,8 +206,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_QP"
     begin
         open c_GRL_COMPOSICION_SISTEMAS for
         select
-        SIST_ID_SISTEMA
-        ,SIST_ID_SUBSISTEMA
+        sist_codigo
+        ,sist_codigo_subsistema
         ,NOMBRE_PROYECTO
         ,AUD_CREADO_EL
         ,AUD_CREADO_POR

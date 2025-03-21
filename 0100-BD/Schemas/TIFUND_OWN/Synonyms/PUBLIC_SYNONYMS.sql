@@ -21,3 +21,6 @@ create or replace public synonym SET_AS_UNINVOKED_PARAMETER for TIFUND_OWN.SET_A
 
 create or replace public synonym FDC_UTILITY for TIFUND_OWN.FDC_UTILITY
 /
+
+create or replace public synonym invocation_params_context for tifund_own.invocation_params_context
+/

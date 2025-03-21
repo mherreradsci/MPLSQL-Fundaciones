@@ -10,6 +10,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."UTL_LOG_PROCESOS"
 * 17-Dic-2004 mherrera Función: inicia_log: Se agregan los parámetros
 *                      p_id_sistema, p_id_subsistema y p_usuario_cliente
 * 20-Oct-2024 mherrera Se eleimina p_id_subsistema debido a cambio del modelo.
+* 13-Mar-2025 mherrera Cambia nombre de columna id_sistema por sist_codigo en
 *
 --------------------------------------------------------------------------------
 */
@@ -21,7 +22,7 @@ AS
 
    FUNCTION inicia_log (
       p_proceso_maestro   IN   ulp_procesos_tp.proc_id_t DEFAULT NULL,
-      p_id_sistema        IN   grl_composicion_sistemas_tp.sist_id_sistema_t DEFAULT 'NONAME',
+      p_id_sistema        IN grl_sistemas_tp.sist_codigo_t DEFAULT 'NONAME',
       p_nombre_proceso    IN   ulp_procesos_tp.nombre_proceso_t,   -- Package
       p_comentario        IN   ulp_procesos_tp.comentario_t DEFAULT NULL,
       p_usuario_cliente   IN   ulp_procesos_tp.usuario_cliente_t DEFAULT NULL,
@@ -42,7 +43,7 @@ AS
       v_pid := ulp_procesos_sec.nextval;
       ulp_procesos_cp.ins (p_id                      => v_pid,
                            p_proc_id                 => p_proceso_maestro,
-                           p_sist_id_sistema         => p_id_sistema,
+                           p_sist_codigo             => p_id_sistema,
                            p_nombre_proceso          => p_nombre_proceso,
                            p_fecha_inicio            => SYSDATE,
                            p_comentario              => p_comentario,

@@ -29,7 +29,7 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."ULP_PROCESOS_TP"
 
     subtype id_t is ULP_PROCESOS.id%type;
     subtype proc_id_t is ULP_PROCESOS.proc_id%type;
-    subtype sist_id_sistema_t is ULP_PROCESOS.sist_id_sistema%type;
+    subtype sist_codigo_t is ULP_PROCESOS.sist_codigo%type;
     subtype nombre_proceso_t is ULP_PROCESOS.nombre_proceso%type;
     subtype fecha_inicio_t is ULP_PROCESOS.fecha_inicio%type;
     subtype fecha_termino_t is ULP_PROCESOS.fecha_termino%type;
@@ -46,7 +46,7 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."ULP_PROCESOS_TP"
 
     type id_ct IS TABLE OF id_t INDEX BY BINARY_INTEGER;
     type proc_id_ct IS TABLE OF proc_id_t INDEX BY BINARY_INTEGER;
-    type sist_id_sistema_ct IS TABLE OF sist_id_sistema_t INDEX BY BINARY_INTEGER;
+    type sist_codigo_ct IS TABLE OF sist_codigo_t INDEX BY BINARY_INTEGER;
     type nombre_proceso_ct IS TABLE OF nombre_proceso_t INDEX BY BINARY_INTEGER;
     type fecha_inicio_ct IS TABLE OF fecha_inicio_t INDEX BY BINARY_INTEGER;
     type fecha_termino_ct IS TABLE OF fecha_termino_t INDEX BY BINARY_INTEGER;

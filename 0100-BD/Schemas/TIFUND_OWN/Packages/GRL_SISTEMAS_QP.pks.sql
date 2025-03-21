@@ -27,19 +27,19 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."GRL_SISTEMAS_QP"
     -- Consulta la exitencia de un registro
    -- en la tabla GRL_SISTEMAS basado en la PK
     function existe(
-    p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t
+    p_sist_codigo IN GRL_SISTEMAS_TP.sist_codigo_t
     ) return BOOLEAN;
 
     -- Consulta un registro de tabla GRL_SISTEMAS
    -- basado en la constraint SIST_PK
     procedure sel_SIST_PK(
-        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t
+        p_sist_codigo IN GRL_SISTEMAS_TP.sist_codigo_t
         ,p_GRL_SISTEMAS OUT NOCOPY GRL_SISTEMAS_TP.GRL_SISTEMAS_rt
     ) ;
     -- Obtiene un cursor via una consulta sobre la constraint
    -- SIST_PK de la tabla GRL_SISTEMAS
     function sel_SIST_PK(
-    p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t
+    p_sist_codigo IN GRL_SISTEMAS_TP.sist_codigo_t
     ) return GRL_SISTEMAS_TP.GRL_SISTEMAS_rc;
 
 

@@ -31,7 +31,7 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."GRL_SISTEMAS_CP"
 
     -- Inserta un registro en la tabla GRL_SISTEMAS via la Lista de Columnas
     procedure ins(
-        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t
+        p_sist_codigo IN GRL_SISTEMAS_TP.sist_codigo_t
         ,p_nombre IN GRL_SISTEMAS_TP.nombre_t
         ,p_descripcion IN GRL_SISTEMAS_TP.descripcion_t DEFAULT NULL
         ,p_nivel_sistema IN GRL_SISTEMAS_TP.nivel_sistema_t
@@ -50,7 +50,7 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."GRL_SISTEMAS_CP"
     -- Inserta (modo bulk) registros en
    -- la tabla GRL_SISTEMAS vía colecciones de columnas
     procedure ins(
-        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_ct
+        p_sist_codigo IN GRL_SISTEMAS_TP.sist_codigo_ct
         ,p_nombre IN GRL_SISTEMAS_TP.nombre_ct
         ,p_descripcion IN GRL_SISTEMAS_TP.descripcion_ct
         ,p_nivel_sistema IN GRL_SISTEMAS_TP.nivel_sistema_ct
@@ -63,7 +63,7 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."GRL_SISTEMAS_CP"
     -- Actualiza un registro de la tabla GRL_SISTEMAS en función
    -- de la constraint SIST_PK
     procedure upd_SIST_PK(
-        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t
+        p_sist_codigo IN GRL_SISTEMAS_TP.sist_codigo_t
         ,p_GRL_SISTEMAS IN GRL_SISTEMAS_TP.GRL_SISTEMAS_rt
     );
 
@@ -96,7 +96,7 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."GRL_SISTEMAS_CP"
    -- GRL_SISTEMAS en función de la
    -- constraint SIST_PK
     procedure upd_SIST_PK(
-        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t ,
+        p_sist_codigo IN GRL_SISTEMAS_TP.sist_codigo_t ,
         p_nombre IN GRL_SISTEMAS_TP.nombre_t DEFAULT set_as_uninvoked_parameter.nlvc2('P2')
         ,p_descripcion IN GRL_SISTEMAS_TP.descripcion_t DEFAULT set_as_uninvoked_parameter.nlvc2('P3')
         ,p_nivel_sistema IN GRL_SISTEMAS_TP.nivel_sistema_t DEFAULT set_as_uninvoked_parameter.nlnum('P4')
@@ -110,7 +110,7 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."GRL_SISTEMAS_CP"
     -- Borra registro(s) de la tabla GRL_SISTEMAS en
    -- función de la constraint SIST_PK
     function del_SIST_PK(
-        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t
+        p_sist_codigo IN GRL_SISTEMAS_TP.sist_codigo_t
     ) RETURN SIMPLE_INTEGER;
 
 

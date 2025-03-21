@@ -31,8 +31,8 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
 
     -- Inserta un registro en la tabla GRL_COMPOSICION_SISTEMAS via la Lista de Columnas
     procedure ins(
-        p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t
-        ,p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t
+        p_sist_codigo IN GRL_COMPOSICION_SISTEMAS_TP.sist_codigo_t
+        ,p_sist_codigo_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_codigo_subsistema_t
         ,p_nombre_proyecto IN GRL_COMPOSICION_SISTEMAS_TP.nombre_proyecto_t
         ,p_aud_creado_el IN GRL_COMPOSICION_SISTEMAS_TP.aud_creado_el_t DEFAULT sysdate
         ,p_aud_creado_por IN GRL_COMPOSICION_SISTEMAS_TP.aud_creado_por_t DEFAULT user
@@ -49,8 +49,8 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
     -- Inserta (modo bulk) registros en
    -- la tabla GRL_COMPOSICION_SISTEMAS vía colecciones de columnas
     procedure ins(
-        p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_ct
-        ,p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_ct
+        p_sist_codigo IN GRL_COMPOSICION_SISTEMAS_TP.sist_codigo_ct
+        ,p_sist_codigo_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_codigo_subsistema_ct
         ,p_nombre_proyecto IN GRL_COMPOSICION_SISTEMAS_TP.nombre_proyecto_ct
         ,p_aud_creado_el IN GRL_COMPOSICION_SISTEMAS_TP.aud_creado_el_ct
         ,p_aud_creado_por IN GRL_COMPOSICION_SISTEMAS_TP.aud_creado_por_ct
@@ -61,8 +61,8 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
     -- Actualiza un registro de la tabla GRL_COMPOSICION_SISTEMAS en función
    -- de la constraint COSI_PK
     procedure upd_COSI_PK(
-        p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t
-        ,p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t
+        p_sist_codigo IN GRL_COMPOSICION_SISTEMAS_TP.sist_codigo_t
+        ,p_sist_codigo_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_codigo_subsistema_t
         ,p_GRL_COMPOSICION_SISTEMAS IN GRL_COMPOSICION_SISTEMAS_TP.GRL_COMPOSICION_SISTEMAS_rt
     );
 
@@ -95,8 +95,8 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
    -- GRL_COMPOSICION_SISTEMAS en función de la
    -- constraint COSI_PK
     procedure upd_COSI_PK(
-        p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t
-        ,p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t ,
+        p_sist_codigo IN GRL_COMPOSICION_SISTEMAS_TP.sist_codigo_t
+        ,p_sist_codigo_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_codigo_subsistema_t ,
         p_nombre_proyecto IN GRL_COMPOSICION_SISTEMAS_TP.nombre_proyecto_t DEFAULT set_as_uninvoked_parameter.nlvc2('P3')
         ,p_aud_creado_el IN GRL_COMPOSICION_SISTEMAS_TP.aud_creado_el_t DEFAULT set_as_uninvoked_parameter.nldate('P4')
         ,p_aud_creado_por IN GRL_COMPOSICION_SISTEMAS_TP.aud_creado_por_t DEFAULT set_as_uninvoked_parameter.nlvc2('P5')
@@ -108,8 +108,8 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
     -- Borra registro(s) de la tabla GRL_COMPOSICION_SISTEMAS en
    -- función de la constraint COSI_PK
     function del_COSI_PK(
-        p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t
-        ,p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t
+        p_sist_codigo IN GRL_COMPOSICION_SISTEMAS_TP.sist_codigo_t
+        ,p_sist_codigo_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_codigo_subsistema_t
     ) RETURN SIMPLE_INTEGER;
 
 
@@ -117,13 +117,13 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
     -- Borra registro(s) de la tabla GRL_COMPOSICION_SISTEMAS en
    -- función de la constraint COSI_SIST_COMPUESTO_DE_FK
     function del_COSI_SIST_COMPUESTO_DE_FK(
-        p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t
+        p_sist_codigo_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_codigo_subsistema_t
     ) RETURN SIMPLE_INTEGER;
 
     -- Borra registro(s) de la tabla GRL_COMPOSICION_SISTEMAS en
    -- función de la constraint COSI_SIST_COMPUESTO_POR_FK
     function del_COSI_SIST_COMPUESTO_POR_FK(
-        p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t
+        p_sist_codigo IN GRL_COMPOSICION_SISTEMAS_TP.sist_codigo_t
     ) RETURN SIMPLE_INTEGER;
 
 

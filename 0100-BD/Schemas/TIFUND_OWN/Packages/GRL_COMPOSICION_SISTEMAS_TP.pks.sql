@@ -27,16 +27,16 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_TP"
     -- Constantes para identificar el package
     K_PACKAGE CONSTANT FDC_DEFS.PACKAGE_NAME_T := 'GRL_COMPOSICION_SISTEMAS_TP';
 
-    subtype sist_id_sistema_t is GRL_COMPOSICION_SISTEMAS.sist_id_sistema%type;
-    subtype sist_id_subsistema_t is GRL_COMPOSICION_SISTEMAS.sist_id_subsistema%type;
+    subtype sist_codigo_t is GRL_COMPOSICION_SISTEMAS.sist_codigo%type;
+    subtype sist_codigo_subsistema_t is GRL_COMPOSICION_SISTEMAS.sist_codigo_subsistema%type;
     subtype nombre_proyecto_t is GRL_COMPOSICION_SISTEMAS.nombre_proyecto%type;
     subtype aud_creado_el_t is GRL_COMPOSICION_SISTEMAS.aud_creado_el%type;
     subtype aud_creado_por_t is GRL_COMPOSICION_SISTEMAS.aud_creado_por%type;
     subtype aud_modificado_el_t is GRL_COMPOSICION_SISTEMAS.aud_modificado_el%type;
     subtype aud_modificado_por_t is GRL_COMPOSICION_SISTEMAS.aud_modificado_por%type;
 
-    type sist_id_sistema_ct IS TABLE OF sist_id_sistema_t INDEX BY BINARY_INTEGER;
-    type sist_id_subsistema_ct IS TABLE OF sist_id_subsistema_t INDEX BY BINARY_INTEGER;
+    type sist_codigo_ct IS TABLE OF sist_codigo_t INDEX BY BINARY_INTEGER;
+    type sist_codigo_subsistema_ct IS TABLE OF sist_codigo_subsistema_t INDEX BY BINARY_INTEGER;
     type nombre_proyecto_ct IS TABLE OF nombre_proyecto_t INDEX BY BINARY_INTEGER;
     type aud_creado_el_ct IS TABLE OF aud_creado_el_t INDEX BY BINARY_INTEGER;
     type aud_creado_por_ct IS TABLE OF aud_creado_por_t INDEX BY BINARY_INTEGER;
