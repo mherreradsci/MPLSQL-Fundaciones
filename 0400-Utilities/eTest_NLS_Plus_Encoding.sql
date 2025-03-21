@@ -3,6 +3,8 @@
 --$ NLS_LANG=SPANISH_CHILE.WE8MSWIN1252 sqlplus system@centos-ora11g @eTest_NLS_Plus_Encoding.sql < /tmp/pass
 --$ NLS_LANG=SPANISH_CHILE.UTF8 sqlplus system@centos-ora11g @eTest_NLS_Plus_Encoding.sql < /tmp/pass
 
+--$ NLS_LANG=SPANISH_CHILE.UTF8 sqlplus system@docker-19c-pdb1-testing @eTest_NLS_Plus_Encoding.sql
+
 WHENEVER SQLERROR EXIT SQL.SQLCODE
 
 set echo off lines 600 pagesize 9999
@@ -14,8 +16,6 @@ col PARAMETER format a30 wrap
 col VALUE format a30 wrap
 
 SELECT * FROM nls_session_parameters where parameter in('NLS_TERRITORY', 'NLS_LANGUAGE','NLS_NUMERIC_CHARACTERS','NLS_DATE_FORMAT','NLS_DATE_LANGUAGE');
-
-select 'ñ' as ch, chr(241) from dual;
 
 
 -- Valida que el separador decimal sea coma (,)
@@ -29,8 +29,16 @@ select case to_char(next_day(trunc(sysdate, 'month'), 'lunes'), 'd') when '1' th
  
 col C_ENCODING new_value V_ENCODING
 
+
+select chr(ascii('ñ')) from dual;
+
+-- chr(241) = ñ
 with encoding as (
-    select case when 'ñ' != chr(241) then 'Fail' else 'Pass: Encoding Ok' end as TestEncoding from dual
+    select case when 'ñ' != chr(ascii('ñ')) then 'Fail' else 'Pass: Encoding Ok' end as TestEncoding from dual
 )     
 select  case testencoding when 'Pass: Encoding Ok' then 0 else 1/0 end as force_error  
 from encoding;
+
+
+--select ascii('ñ'), chr(ascii('ñ')) from dual;
+

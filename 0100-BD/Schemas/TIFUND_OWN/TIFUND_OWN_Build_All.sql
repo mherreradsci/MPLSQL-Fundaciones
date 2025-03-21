@@ -20,6 +20,7 @@
 -- Para ejecutar desde MINGW64 en Windows se debe asignar la variable de 
 -- ambiente NLS_LANG utilizando español y UTF8 o AL32UTF8, por ejemplo: 
 --  $ NLS_LANG=SPANISH_SPAIN.UTF8 sqlplus system@centos-ora11g @TIFUND_OWN_Build_All.sql
+--  $ NLS_LANG=SPANISH_SPAIN.UTF8 sqlplus system@docker-19c-pdb1-testing @TIFUND_OWN_Build_All.sql
 
 
 col C_SERVICE_NAME new_value V_SERVICE_NAME
