@@ -63,7 +63,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_QP"
         cursor c_ULP_PROCESOS is select
             ID
             ,PROC_ID
-            ,SIST_ID_SISTEMA
+            ,SIST_CODIGO
             ,NOMBRE_PROCESO
             ,FECHA_INICIO
             ,FECHA_TERMINO
@@ -113,7 +113,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_QP"
         select
         ID
         ,PROC_ID
-        ,SIST_ID_SISTEMA
+        ,SIST_CODIGO
         ,NOMBRE_PROCESO
         ,FECHA_INICIO
         ,FECHA_TERMINO
@@ -156,7 +156,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_QP"
         select
         ID
         ,PROC_ID
-        ,SIST_ID_SISTEMA
+        ,SIST_CODIGO
         ,NOMBRE_PROCESO
         ,FECHA_INICIO
         ,FECHA_TERMINO
@@ -185,7 +185,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_QP"
     -- Obtiene un cursor via una consulta sobre la constraint
    -- ULP_PROCESOS_GRL_SISTEMAS_ de la tabla ULP_PROCESOS
     function sel_ULP_PROCESOS_GRL_SISTEMAS_(
-    p_sist_id_sistema IN ULP_PROCESOS_TP.sist_id_sistema_t
+    p_SIST_CODIGO IN ULP_PROCESOS_TP.SIST_CODIGO_t
     ) return ULP_PROCESOS_TP.ULP_PROCESOS_rc is
             --* Constantes para identificar el programa
             k_programa CONSTANT FDC_DEFS.program_name_t := 'SEL_ULP_PROCESOS_GRL_SISTEMAS_';
@@ -197,7 +197,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_QP"
         select
         ID
         ,PROC_ID
-        ,SIST_ID_SISTEMA
+        ,SIST_CODIGO
         ,NOMBRE_PROCESO
         ,FECHA_INICIO
         ,FECHA_TERMINO
@@ -213,7 +213,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_QP"
         ,AUD_MODIFICADO_POR
         from ULP_PROCESOS
         where
-            SIST_ID_SISTEMA = p_sist_id_sistema;
+            SIST_CODIGO = p_SIST_CODIGO;
 
         return cu_ULP_PROCESOS;
     exception
@@ -238,7 +238,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_QP"
         select
         ID
         ,PROC_ID
-        ,SIST_ID_SISTEMA
+        ,SIST_CODIGO
         ,NOMBRE_PROCESO
         ,FECHA_INICIO
         ,FECHA_TERMINO

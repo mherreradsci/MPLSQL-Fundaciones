@@ -32,8 +32,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
         -- Variables, constantes, tipos y subtipos locales
     begin
         insert into GRL_COMPOSICION_SISTEMAS(
-            SIST_ID_SISTEMA
-            ,SIST_ID_SUBSISTEMA
+            SIST_CODIGO
+            ,SIST_CODIGO_SUBSISTEMA
             ,NOMBRE_PROYECTO
             ,AUD_CREADO_EL
             ,AUD_CREADO_POR
@@ -41,8 +41,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
             ,AUD_MODIFICADO_POR
         )
         values (
-            p_GRL_COMPOSICION_SISTEMAS.SIST_ID_SISTEMA
-            ,p_GRL_COMPOSICION_SISTEMAS.SIST_ID_SUBSISTEMA
+            p_GRL_COMPOSICION_SISTEMAS.SIST_CODIGO
+            ,p_GRL_COMPOSICION_SISTEMAS.SIST_CODIGO_SUBSISTEMA
             ,p_GRL_COMPOSICION_SISTEMAS.NOMBRE_PROYECTO
             ,p_GRL_COMPOSICION_SISTEMAS.AUD_CREADO_EL
             ,p_GRL_COMPOSICION_SISTEMAS.AUD_CREADO_POR
@@ -60,8 +60,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
 
     -- Inserta un registro en la tabla GRL_COMPOSICION_SISTEMAS via la Lista de Columnas
     procedure ins(
-        p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t
-        ,p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t
+        p_SIST_CODIGO IN GRL_COMPOSICION_SISTEMAS_TP.SIST_CODIGO_t
+        ,p_SIST_CODIGO_SUBSISTEMA IN GRL_COMPOSICION_SISTEMAS_TP.SIST_CODIGO_SUBSISTEMA_t
         ,p_nombre_proyecto IN GRL_COMPOSICION_SISTEMAS_TP.nombre_proyecto_t
         ,p_aud_creado_el IN GRL_COMPOSICION_SISTEMAS_TP.aud_creado_el_t DEFAULT sysdate
         ,p_aud_creado_por IN GRL_COMPOSICION_SISTEMAS_TP.aud_creado_por_t DEFAULT user
@@ -74,8 +74,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
         -- Variables, constantes, tipos y subtipos locales
     begin
         insert into GRL_COMPOSICION_SISTEMAS(
-            SIST_ID_SISTEMA
-            ,SIST_ID_SUBSISTEMA
+            SIST_CODIGO
+            ,SIST_CODIGO_SUBSISTEMA
             ,NOMBRE_PROYECTO
             ,AUD_CREADO_EL
             ,AUD_CREADO_POR
@@ -83,8 +83,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
             ,AUD_MODIFICADO_POR
         )
         values (
-            p_SIST_ID_SISTEMA
-            ,p_SIST_ID_SUBSISTEMA
+            p_SIST_CODIGO
+            ,p_SIST_CODIGO_SUBSISTEMA
             ,p_NOMBRE_PROYECTO
             ,p_AUD_CREADO_EL
             ,p_AUD_CREADO_POR
@@ -109,8 +109,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
         k_programa CONSTANT FDC_DEFS.program_name_t := 'INS';
         k_modulo CONSTANT FDC_DEFS.module_name_t := k_package || '.' || k_programa;
         -- Variables, constantes, tipos y subtipos locales
-        v_sist_id_sistema GRL_COMPOSICION_SISTEMAS_TP.SIST_ID_SISTEMA_ct;
-        v_sist_id_subsistema GRL_COMPOSICION_SISTEMAS_TP.SIST_ID_SUBSISTEMA_ct;
+        v_SIST_CODIGO GRL_COMPOSICION_SISTEMAS_TP.SIST_CODIGO_ct;
+        v_SIST_CODIGO_SUBSISTEMA GRL_COMPOSICION_SISTEMAS_TP.SIST_CODIGO_SUBSISTEMA_ct;
         v_nombre_proyecto GRL_COMPOSICION_SISTEMAS_TP.NOMBRE_PROYECTO_ct;
         v_aud_creado_el GRL_COMPOSICION_SISTEMAS_TP.AUD_CREADO_EL_ct;
         v_aud_creado_por GRL_COMPOSICION_SISTEMAS_TP.AUD_CREADO_POR_ct;
@@ -118,10 +118,10 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
         v_aud_modificado_por GRL_COMPOSICION_SISTEMAS_TP.AUD_MODIFICADO_POR_ct;
     begin
         FOR indx IN p_regs.FIRST .. p_regs.LAST LOOP
-            v_SIST_ID_SISTEMA(indx) := p_regs(indx).SIST_ID_SISTEMA;
+            v_SIST_CODIGO(indx) := p_regs(indx).SIST_CODIGO;
         end loop;
         FOR indx IN p_regs.FIRST .. p_regs.LAST LOOP
-            v_SIST_ID_SUBSISTEMA(indx) := p_regs(indx).SIST_ID_SUBSISTEMA;
+            v_SIST_CODIGO_SUBSISTEMA(indx) := p_regs(indx).SIST_CODIGO_SUBSISTEMA;
         end loop;
         FOR indx IN p_regs.FIRST .. p_regs.LAST LOOP
             v_NOMBRE_PROYECTO(indx) := p_regs(indx).NOMBRE_PROYECTO;
@@ -140,8 +140,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
         end loop;
         FORALL indx IN p_regs.FIRST .. p_regs.LAST
             insert into GRL_COMPOSICION_SISTEMAS(
-                SIST_ID_SISTEMA
-                ,SIST_ID_SUBSISTEMA
+                SIST_CODIGO
+                ,SIST_CODIGO_SUBSISTEMA
                 ,NOMBRE_PROYECTO
                 ,AUD_CREADO_EL
                 ,AUD_CREADO_POR
@@ -149,8 +149,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
                 ,AUD_MODIFICADO_POR
             )
             values (
-                v_SIST_ID_SISTEMA(indx)
-                ,v_SIST_ID_SUBSISTEMA(indx)
+                v_SIST_CODIGO(indx)
+                ,v_SIST_CODIGO_SUBSISTEMA(indx)
                 ,v_NOMBRE_PROYECTO(indx)
                 ,v_AUD_CREADO_EL(indx)
                 ,v_AUD_CREADO_POR(indx)
@@ -158,8 +158,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
                 ,v_AUD_MODIFICADO_POR(indx)
             );
 
-            v_SIST_ID_SISTEMA.DELETE;
-            v_SIST_ID_SUBSISTEMA.DELETE;
+            v_SIST_CODIGO.DELETE;
+            v_SIST_CODIGO_SUBSISTEMA.DELETE;
             v_NOMBRE_PROYECTO.DELETE;
             v_AUD_CREADO_EL.DELETE;
             v_AUD_CREADO_POR.DELETE;
@@ -176,8 +176,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
     -- Inserta (modo bulk) registros en
    -- la tabla GRL_COMPOSICION_SISTEMAS vía colecciones de columnas
     procedure ins(
-        p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_ct
-        ,p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_ct
+        p_SIST_CODIGO IN GRL_COMPOSICION_SISTEMAS_TP.SIST_CODIGO_ct
+        ,p_SIST_CODIGO_SUBSISTEMA IN GRL_COMPOSICION_SISTEMAS_TP.SIST_CODIGO_SUBSISTEMA_ct
         ,p_nombre_proyecto IN GRL_COMPOSICION_SISTEMAS_TP.nombre_proyecto_ct
         ,p_aud_creado_el IN GRL_COMPOSICION_SISTEMAS_TP.aud_creado_el_ct
         ,p_aud_creado_por IN GRL_COMPOSICION_SISTEMAS_TP.aud_creado_por_ct
@@ -189,10 +189,10 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
         k_modulo CONSTANT FDC_DEFS.module_name_t := k_package || '.' || k_programa;
         -- Variables, constantes, tipos y subtipos locales
     begin
-        FORALL indx IN p_SIST_ID_SISTEMA.FIRST .. p_SIST_ID_SISTEMA.LAST
+        FORALL indx IN p_SIST_CODIGO.FIRST .. p_SIST_CODIGO.LAST
             insert into GRL_COMPOSICION_SISTEMAS(
-                SIST_ID_SISTEMA
-                ,SIST_ID_SUBSISTEMA
+                SIST_CODIGO
+                ,SIST_CODIGO_SUBSISTEMA
                 ,NOMBRE_PROYECTO
                 ,AUD_CREADO_EL
                 ,AUD_CREADO_POR
@@ -200,8 +200,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
                 ,AUD_MODIFICADO_POR
             )
             values (
-                p_SIST_ID_SISTEMA(indx)
-                ,p_SIST_ID_SUBSISTEMA(indx)
+                p_SIST_CODIGO(indx)
+                ,p_SIST_CODIGO_SUBSISTEMA(indx)
                 ,p_NOMBRE_PROYECTO(indx)
                 ,p_AUD_CREADO_EL(indx)
                 ,p_AUD_CREADO_POR(indx)
@@ -220,8 +220,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
     -- Actualiza un registro de la tabla GRL_COMPOSICION_SISTEMAS en función
    -- de la constraint COSI_PK
     procedure upd_COSI_PK(
-        p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t
-        ,p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t
+        p_SIST_CODIGO IN GRL_COMPOSICION_SISTEMAS_TP.SIST_CODIGO_t
+        ,p_SIST_CODIGO_SUBSISTEMA IN GRL_COMPOSICION_SISTEMAS_TP.SIST_CODIGO_SUBSISTEMA_t
         ,p_GRL_COMPOSICION_SISTEMAS IN GRL_COMPOSICION_SISTEMAS_TP.GRL_COMPOSICION_SISTEMAS_rt
     ) is
         --* Constantes para identificar el programa
@@ -237,8 +237,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
                 ,aud_modificado_el = p_GRL_COMPOSICION_SISTEMAS.aud_modificado_el
                 ,aud_modificado_por = p_GRL_COMPOSICION_SISTEMAS.aud_modificado_por
         where
-            SIST_ID_SISTEMA = p_sist_id_sistema
-            and   SIST_ID_SUBSISTEMA = p_sist_id_subsistema;
+            SIST_CODIGO = p_SIST_CODIGO
+            and   SIST_CODIGO_SUBSISTEMA = p_SIST_CODIGO_SUBSISTEMA;
 
     exception
         when others then
@@ -334,8 +334,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
    -- GRL_COMPOSICION_SISTEMAS en función de la
    -- constraint COSI_PK
     procedure upd_COSI_PK(
-        p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t
-        ,p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t ,
+        p_SIST_CODIGO IN GRL_COMPOSICION_SISTEMAS_TP.SIST_CODIGO_t
+        ,p_SIST_CODIGO_SUBSISTEMA IN GRL_COMPOSICION_SISTEMAS_TP.SIST_CODIGO_SUBSISTEMA_t ,
         p_nombre_proyecto IN GRL_COMPOSICION_SISTEMAS_TP.nombre_proyecto_t DEFAULT set_as_uninvoked_parameter.nlvc2('P3')
         ,p_aud_creado_el IN GRL_COMPOSICION_SISTEMAS_TP.aud_creado_el_t DEFAULT set_as_uninvoked_parameter.nldate('P4')
         ,p_aud_creado_por IN GRL_COMPOSICION_SISTEMAS_TP.aud_creado_por_t DEFAULT set_as_uninvoked_parameter.nlvc2('P5')
@@ -357,8 +357,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
                 ,aud_modificado_el = CASE WHEN INSTR(v_client_info, '#P6#') > 0 then aud_modificado_el ELSE p_aud_modificado_el END
                 ,aud_modificado_por = CASE WHEN INSTR(v_client_info, '#P7#') > 0 then aud_modificado_por ELSE p_aud_modificado_por END
         where
-            SIST_ID_SISTEMA = p_sist_id_sistema
-            and   SIST_ID_SUBSISTEMA = p_sist_id_subsistema;
+            SIST_CODIGO = p_SIST_CODIGO
+            and   SIST_CODIGO_SUBSISTEMA = p_SIST_CODIGO_SUBSISTEMA;
 
         invocation_params_context.set_client_info (NULL);
     exception
@@ -373,8 +373,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
     -- Borra registro(s) de la tabla GRL_COMPOSICION_SISTEMAS en
    -- función de la constraint COSI_PK
     function del_COSI_PK(
-        p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t
-        ,p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t
+        p_SIST_CODIGO IN GRL_COMPOSICION_SISTEMAS_TP.SIST_CODIGO_t
+        ,p_SIST_CODIGO_SUBSISTEMA IN GRL_COMPOSICION_SISTEMAS_TP.SIST_CODIGO_SUBSISTEMA_t
     ) RETURN SIMPLE_INTEGER IS
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'DEL_COSI_PK';
@@ -384,8 +384,8 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
     begin
         delete GRL_COMPOSICION_SISTEMAS
         where
-            SIST_ID_SISTEMA = p_sist_id_sistema
-            and   SIST_ID_SUBSISTEMA = p_sist_id_subsistema;
+            SIST_CODIGO = p_SIST_CODIGO
+            and   SIST_CODIGO_SUBSISTEMA = p_SIST_CODIGO_SUBSISTEMA;
 
         v_num_regs := SQL%ROWCOUNT;
         RETURN v_num_regs;
@@ -402,7 +402,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
     -- Borra registro(s) de la tabla GRL_COMPOSICION_SISTEMAS en
    -- función de la constraint COSI_SIST_COMPUESTO_DE_FK
     function del_COSI_SIST_COMPUESTO_DE_FK(
-        p_sist_id_subsistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_subsistema_t
+        p_SIST_CODIGO_SUBSISTEMA IN GRL_COMPOSICION_SISTEMAS_TP.SIST_CODIGO_SUBSISTEMA_t
     ) RETURN SIMPLE_INTEGER IS
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'DEL_COSI_SIST_COMPUESTO_DE_FK';
@@ -412,7 +412,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
     begin
         delete GRL_COMPOSICION_SISTEMAS
         where
-            SIST_ID_SUBSISTEMA = p_sist_id_subsistema;
+            SIST_CODIGO_SUBSISTEMA = p_SIST_CODIGO_SUBSISTEMA;
 
         v_num_regs := SQL%ROWCOUNT;
         RETURN v_num_regs;
@@ -427,7 +427,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
     -- Borra registro(s) de la tabla GRL_COMPOSICION_SISTEMAS en
    -- función de la constraint COSI_SIST_COMPUESTO_POR_FK
     function del_COSI_SIST_COMPUESTO_POR_FK(
-        p_sist_id_sistema IN GRL_COMPOSICION_SISTEMAS_TP.sist_id_sistema_t
+        p_SIST_CODIGO IN GRL_COMPOSICION_SISTEMAS_TP.SIST_CODIGO_t
     ) RETURN SIMPLE_INTEGER IS
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'DEL_COSI_SIST_COMPUESTO_POR_FK';
@@ -437,7 +437,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_COMPOSICION_SISTEMAS_CP"
     begin
         delete GRL_COMPOSICION_SISTEMAS
         where
-            SIST_ID_SISTEMA = p_sist_id_sistema;
+            SIST_CODIGO = p_SIST_CODIGO;
 
         v_num_regs := SQL%ROWCOUNT;
         RETURN v_num_regs;

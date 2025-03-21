@@ -6,14 +6,21 @@ IS
     SUBTYPE ue_codigo_error_t IS NUMBER (6);
 
     --* UTL_ERROR
-    ug_error_fatal              EXCEPTION;
-    k_ue_error_fatal            ue_codigo_error_t :=        -20200;
-    PRAGMA EXCEPTION_INIT (ug_error_fatal,                  -20200);
+    
+    ug_error_fatal                  EXCEPTION;
+    k_ue_error_fatal                ue_codigo_error_t :=            -20999 ;
+    PRAGMA EXCEPTION_INIT (ug_error_fatal,                          -20999);
 
     --* Directorios
-    ue_directorio_no_existe     EXCEPTION;
-    k_ue_directorio_no_existe   ue_codigo_error_t :=        -20100;
-    PRAGMA EXCEPTION_INIT (ue_directorio_no_existe,         -20100);
+    ue_directorio_no_existe         EXCEPTION;
+    k_ue_directorio_no_existe       ue_codigo_error_t :=            -20001;
+    PRAGMA EXCEPTION_INIT (ue_directorio_no_existe,                 -20001);
+    
+    --* UTL_OUTPUT
+    ue_tamano_trozo_invalido        EXCEPTION;
+    k_ue_tamano_trozo_invalido      ue_codigo_error_t :=            -20002;
+    PRAGMA EXCEPTION_INIT (ue_tamano_trozo_invalido,                -20002);
+    
 
     -- *************************************************************************
     --* Redefinición para excepciones que no existen

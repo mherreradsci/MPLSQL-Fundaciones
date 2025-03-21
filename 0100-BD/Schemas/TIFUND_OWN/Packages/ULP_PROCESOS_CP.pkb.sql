@@ -34,7 +34,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_CP"
         insert into ULP_PROCESOS(
             ID
             ,PROC_ID
-            ,SIST_ID_SISTEMA
+            ,SIST_CODIGO
             ,NOMBRE_PROCESO
             ,FECHA_INICIO
             ,FECHA_TERMINO
@@ -52,7 +52,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_CP"
         values (
             p_ULP_PROCESOS.ID
             ,p_ULP_PROCESOS.PROC_ID
-            ,p_ULP_PROCESOS.SIST_ID_SISTEMA
+            ,p_ULP_PROCESOS.SIST_CODIGO
             ,p_ULP_PROCESOS.NOMBRE_PROCESO
             ,p_ULP_PROCESOS.FECHA_INICIO
             ,p_ULP_PROCESOS.FECHA_TERMINO
@@ -80,7 +80,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_CP"
     procedure ins(
         p_id IN ULP_PROCESOS_TP.id_t
         ,p_proc_id IN ULP_PROCESOS_TP.proc_id_t DEFAULT NULL
-        ,p_sist_id_sistema IN ULP_PROCESOS_TP.sist_id_sistema_t
+        ,p_SIST_CODIGO IN ULP_PROCESOS_TP.SIST_CODIGO_t
         ,p_nombre_proceso IN ULP_PROCESOS_TP.nombre_proceso_t
         ,p_fecha_inicio IN ULP_PROCESOS_TP.fecha_inicio_t DEFAULT sysdate
         ,p_fecha_termino IN ULP_PROCESOS_TP.fecha_termino_t DEFAULT NULL
@@ -103,7 +103,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_CP"
         insert into ULP_PROCESOS(
             ID
             ,PROC_ID
-            ,SIST_ID_SISTEMA
+            ,SIST_CODIGO
             ,NOMBRE_PROCESO
             ,FECHA_INICIO
             ,FECHA_TERMINO
@@ -121,7 +121,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_CP"
         values (
             p_ID
             ,p_PROC_ID
-            ,p_SIST_ID_SISTEMA
+            ,p_SIST_CODIGO
             ,p_NOMBRE_PROCESO
             ,p_FECHA_INICIO
             ,p_FECHA_TERMINO
@@ -156,7 +156,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_CP"
         -- Variables, constantes, tipos y subtipos locales
         v_id ULP_PROCESOS_TP.ID_ct;
         v_proc_id ULP_PROCESOS_TP.PROC_ID_ct;
-        v_sist_id_sistema ULP_PROCESOS_TP.SIST_ID_SISTEMA_ct;
+        v_SIST_CODIGO ULP_PROCESOS_TP.SIST_CODIGO_ct;
         v_nombre_proceso ULP_PROCESOS_TP.NOMBRE_PROCESO_ct;
         v_fecha_inicio ULP_PROCESOS_TP.FECHA_INICIO_ct;
         v_fecha_termino ULP_PROCESOS_TP.FECHA_TERMINO_ct;
@@ -178,7 +178,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_CP"
             v_PROC_ID(indx) := p_regs(indx).PROC_ID;
         end loop;
         FOR indx IN p_regs.FIRST .. p_regs.LAST LOOP
-            v_SIST_ID_SISTEMA(indx) := p_regs(indx).SIST_ID_SISTEMA;
+            v_SIST_CODIGO(indx) := p_regs(indx).SIST_CODIGO;
         end loop;
         FOR indx IN p_regs.FIRST .. p_regs.LAST LOOP
             v_NOMBRE_PROCESO(indx) := p_regs(indx).NOMBRE_PROCESO;
@@ -223,7 +223,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_CP"
             insert into ULP_PROCESOS(
                 ID
                 ,PROC_ID
-                ,SIST_ID_SISTEMA
+                ,SIST_CODIGO
                 ,NOMBRE_PROCESO
                 ,FECHA_INICIO
                 ,FECHA_TERMINO
@@ -241,7 +241,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_CP"
             values (
                 v_ID(indx)
                 ,v_PROC_ID(indx)
-                ,v_SIST_ID_SISTEMA(indx)
+                ,v_SIST_CODIGO(indx)
                 ,v_NOMBRE_PROCESO(indx)
                 ,v_FECHA_INICIO(indx)
                 ,v_FECHA_TERMINO(indx)
@@ -259,7 +259,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_CP"
 
             v_ID.DELETE;
             v_PROC_ID.DELETE;
-            v_SIST_ID_SISTEMA.DELETE;
+            v_SIST_CODIGO.DELETE;
             v_NOMBRE_PROCESO.DELETE;
             v_FECHA_INICIO.DELETE;
             v_FECHA_TERMINO.DELETE;
@@ -286,7 +286,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_CP"
     procedure ins(
         p_id IN ULP_PROCESOS_TP.id_ct
         ,p_proc_id IN ULP_PROCESOS_TP.proc_id_ct
-        ,p_sist_id_sistema IN ULP_PROCESOS_TP.sist_id_sistema_ct
+        ,p_SIST_CODIGO IN ULP_PROCESOS_TP.SIST_CODIGO_ct
         ,p_nombre_proceso IN ULP_PROCESOS_TP.nombre_proceso_ct
         ,p_fecha_inicio IN ULP_PROCESOS_TP.fecha_inicio_ct
         ,p_fecha_termino IN ULP_PROCESOS_TP.fecha_termino_ct
@@ -310,7 +310,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_CP"
             insert into ULP_PROCESOS(
                 ID
                 ,PROC_ID
-                ,SIST_ID_SISTEMA
+                ,SIST_CODIGO
                 ,NOMBRE_PROCESO
                 ,FECHA_INICIO
                 ,FECHA_TERMINO
@@ -328,7 +328,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_CP"
             values (
                 p_ID(indx)
                 ,p_PROC_ID(indx)
-                ,p_SIST_ID_SISTEMA(indx)
+                ,p_SIST_CODIGO(indx)
                 ,p_NOMBRE_PROCESO(indx)
                 ,p_FECHA_INICIO(indx)
                 ,p_FECHA_TERMINO(indx)
@@ -366,7 +366,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_CP"
         update ULP_PROCESOS
             set
                 proc_id = p_ULP_PROCESOS.proc_id
-                ,sist_id_sistema = p_ULP_PROCESOS.sist_id_sistema
+                ,SIST_CODIGO = p_ULP_PROCESOS.SIST_CODIGO
                 ,nombre_proceso = p_ULP_PROCESOS.nombre_proceso
                 ,fecha_inicio = p_ULP_PROCESOS.fecha_inicio
                 ,fecha_termino = p_ULP_PROCESOS.fecha_termino
@@ -479,7 +479,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_CP"
     procedure upd_PROC_PK(
         p_id IN ULP_PROCESOS_TP.id_t ,
         p_proc_id IN ULP_PROCESOS_TP.proc_id_t DEFAULT set_as_uninvoked_parameter.nlnum('P2')
-        ,p_sist_id_sistema IN ULP_PROCESOS_TP.sist_id_sistema_t DEFAULT set_as_uninvoked_parameter.nlvc2('P3')
+        ,p_SIST_CODIGO IN ULP_PROCESOS_TP.SIST_CODIGO_t DEFAULT set_as_uninvoked_parameter.nlvc2('P3')
         ,p_nombre_proceso IN ULP_PROCESOS_TP.nombre_proceso_t DEFAULT set_as_uninvoked_parameter.nlvc2('P4')
         ,p_fecha_inicio IN ULP_PROCESOS_TP.fecha_inicio_t DEFAULT set_as_uninvoked_parameter.nldate('P5')
         ,p_fecha_termino IN ULP_PROCESOS_TP.fecha_termino_t DEFAULT set_as_uninvoked_parameter.nldate('P6')
@@ -504,7 +504,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_CP"
         update ULP_PROCESOS
             set
                 proc_id = CASE WHEN INSTR(v_client_info, '#P2#') > 0 then proc_id ELSE p_proc_id END
-                ,sist_id_sistema = CASE WHEN INSTR(v_client_info, '#P3#') > 0 then sist_id_sistema ELSE p_sist_id_sistema END
+                ,SIST_CODIGO = CASE WHEN INSTR(v_client_info, '#P3#') > 0 then SIST_CODIGO ELSE p_SIST_CODIGO END
                 ,nombre_proceso = CASE WHEN INSTR(v_client_info, '#P4#') > 0 then nombre_proceso ELSE p_nombre_proceso END
                 ,fecha_inicio = CASE WHEN INSTR(v_client_info, '#P5#') > 0 then fecha_inicio ELSE p_fecha_inicio END
                 ,fecha_termino = CASE WHEN INSTR(v_client_info, '#P6#') > 0 then fecha_termino ELSE p_fecha_termino END
@@ -586,7 +586,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_CP"
     -- Borra registro(s) de la tabla ULP_PROCESOS en
    -- función de la constraint ULP_PROCESOS_GRL_SISTEMAS_FK
     function del_ULP_PROCESOS_GRL_SISTEMAS_(
-        p_sist_id_sistema IN ULP_PROCESOS_TP.sist_id_sistema_t
+        p_SIST_CODIGO IN ULP_PROCESOS_TP.SIST_CODIGO_t
     ) RETURN SIMPLE_INTEGER IS
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'DEL_ULP_PROCESOS_GRL_SISTEMAS_';
@@ -596,7 +596,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."ULP_PROCESOS_CP"
     begin
         delete ULP_PROCESOS
         where
-            SIST_ID_SISTEMA = p_sist_id_sistema;
+            SIST_CODIGO = p_SIST_CODIGO;
 
         v_num_regs := SQL%ROWCOUNT;
         RETURN v_num_regs;

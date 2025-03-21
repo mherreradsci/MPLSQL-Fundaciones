@@ -51,7 +51,7 @@ CREATE OR REPLACE PACKAGE "TIFUND_OWN"."ULP_PROCESOS_QP"
     -- Obtiene un cursor via una consulta sobre la constraint
    -- ULP_PROCESOS_GRL_SISTEMAS_ de la tabla ULP_PROCESOS
     function sel_ULP_PROCESOS_GRL_SISTEMAS_(
-    p_sist_id_sistema IN ULP_PROCESOS_TP.sist_id_sistema_t
+    p_sist_codigo IN ULP_PROCESOS_TP.sist_codigo_t
     ) return ULP_PROCESOS_TP.ULP_PROCESOS_rc;
 
     -- Obtiene un cursor para onsultar todos los registros

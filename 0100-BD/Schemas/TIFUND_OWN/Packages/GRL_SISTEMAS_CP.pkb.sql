@@ -32,7 +32,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_CP"
         -- Variables, constantes, tipos y subtipos locales
     begin
         insert into GRL_SISTEMAS(
-            ID_SISTEMA
+            SIST_CODIGO
             ,NOMBRE
             ,DESCRIPCION
             ,NIVEL_SISTEMA
@@ -42,7 +42,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_CP"
             ,AUD_MODIFICADO_POR
         )
         values (
-            p_GRL_SISTEMAS.ID_SISTEMA
+            p_GRL_SISTEMAS.SIST_CODIGO
             ,p_GRL_SISTEMAS.NOMBRE
             ,p_GRL_SISTEMAS.DESCRIPCION
             ,p_GRL_SISTEMAS.NIVEL_SISTEMA
@@ -62,7 +62,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_CP"
 
     -- Inserta un registro en la tabla GRL_SISTEMAS via la Lista de Columnas
     procedure ins(
-        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t
+        p_SIST_CODIGO IN GRL_SISTEMAS_TP.SIST_CODIGO_t
         ,p_nombre IN GRL_SISTEMAS_TP.nombre_t
         ,p_descripcion IN GRL_SISTEMAS_TP.descripcion_t DEFAULT NULL
         ,p_nivel_sistema IN GRL_SISTEMAS_TP.nivel_sistema_t
@@ -77,7 +77,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_CP"
         -- Variables, constantes, tipos y subtipos locales
     begin
         insert into GRL_SISTEMAS(
-            ID_SISTEMA
+            SIST_CODIGO
             ,NOMBRE
             ,DESCRIPCION
             ,NIVEL_SISTEMA
@@ -87,7 +87,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_CP"
             ,AUD_MODIFICADO_POR
         )
         values (
-            p_ID_SISTEMA
+            p_SIST_CODIGO
             ,p_NOMBRE
             ,p_DESCRIPCION
             ,p_NIVEL_SISTEMA
@@ -114,7 +114,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_CP"
         k_programa CONSTANT FDC_DEFS.program_name_t := 'INS';
         k_modulo CONSTANT FDC_DEFS.module_name_t := k_package || '.' || k_programa;
         -- Variables, constantes, tipos y subtipos locales
-        v_id_sistema GRL_SISTEMAS_TP.ID_SISTEMA_ct;
+        v_SIST_CODIGO GRL_SISTEMAS_TP.SIST_CODIGO_ct;
         v_nombre GRL_SISTEMAS_TP.NOMBRE_ct;
         v_descripcion GRL_SISTEMAS_TP.DESCRIPCION_ct;
         v_nivel_sistema GRL_SISTEMAS_TP.NIVEL_SISTEMA_ct;
@@ -124,7 +124,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_CP"
         v_aud_modificado_por GRL_SISTEMAS_TP.AUD_MODIFICADO_POR_ct;
     begin
         FOR indx IN p_regs.FIRST .. p_regs.LAST LOOP
-            v_ID_SISTEMA(indx) := p_regs(indx).ID_SISTEMA;
+            v_SIST_CODIGO(indx) := p_regs(indx).SIST_CODIGO;
         end loop;
         FOR indx IN p_regs.FIRST .. p_regs.LAST LOOP
             v_NOMBRE(indx) := p_regs(indx).NOMBRE;
@@ -149,7 +149,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_CP"
         end loop;
         FORALL indx IN p_regs.FIRST .. p_regs.LAST
             insert into GRL_SISTEMAS(
-                ID_SISTEMA
+                SIST_CODIGO
                 ,NOMBRE
                 ,DESCRIPCION
                 ,NIVEL_SISTEMA
@@ -159,7 +159,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_CP"
                 ,AUD_MODIFICADO_POR
             )
             values (
-                v_ID_SISTEMA(indx)
+                v_SIST_CODIGO(indx)
                 ,v_NOMBRE(indx)
                 ,v_DESCRIPCION(indx)
                 ,v_NIVEL_SISTEMA(indx)
@@ -169,7 +169,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_CP"
                 ,v_AUD_MODIFICADO_POR(indx)
             );
 
-            v_ID_SISTEMA.DELETE;
+            v_SIST_CODIGO.DELETE;
             v_NOMBRE.DELETE;
             v_DESCRIPCION.DELETE;
             v_NIVEL_SISTEMA.DELETE;
@@ -188,7 +188,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_CP"
     -- Inserta (modo bulk) registros en
    -- la tabla GRL_SISTEMAS vía colecciones de columnas
     procedure ins(
-        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_ct
+        p_SIST_CODIGO IN GRL_SISTEMAS_TP.SIST_CODIGO_ct
         ,p_nombre IN GRL_SISTEMAS_TP.nombre_ct
         ,p_descripcion IN GRL_SISTEMAS_TP.descripcion_ct
         ,p_nivel_sistema IN GRL_SISTEMAS_TP.nivel_sistema_ct
@@ -202,9 +202,9 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_CP"
         k_modulo CONSTANT FDC_DEFS.module_name_t := k_package || '.' || k_programa;
         -- Variables, constantes, tipos y subtipos locales
     begin
-        FORALL indx IN p_ID_SISTEMA.FIRST .. p_ID_SISTEMA.LAST
+        FORALL indx IN p_SIST_CODIGO.FIRST .. p_SIST_CODIGO.LAST
             insert into GRL_SISTEMAS(
-                ID_SISTEMA
+                SIST_CODIGO
                 ,NOMBRE
                 ,DESCRIPCION
                 ,NIVEL_SISTEMA
@@ -214,7 +214,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_CP"
                 ,AUD_MODIFICADO_POR
             )
             values (
-                p_ID_SISTEMA(indx)
+                p_SIST_CODIGO(indx)
                 ,p_NOMBRE(indx)
                 ,p_DESCRIPCION(indx)
                 ,p_NIVEL_SISTEMA(indx)
@@ -235,7 +235,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_CP"
     -- Actualiza un registro de la tabla GRL_SISTEMAS en función
    -- de la constraint SIST_PK
     procedure upd_SIST_PK(
-        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t
+        p_SIST_CODIGO IN GRL_SISTEMAS_TP.SIST_CODIGO_t
         ,p_GRL_SISTEMAS IN GRL_SISTEMAS_TP.GRL_SISTEMAS_rt
     ) is
         --* Constantes para identificar el programa
@@ -253,7 +253,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_CP"
                 ,aud_modificado_el = p_GRL_SISTEMAS.aud_modificado_el
                 ,aud_modificado_por = p_GRL_SISTEMAS.aud_modificado_por
         where
-            ID_SISTEMA = p_id_sistema;
+            SIST_CODIGO = p_SIST_CODIGO;
 
     exception
         when others then
@@ -349,7 +349,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_CP"
    -- GRL_SISTEMAS en función de la
    -- constraint SIST_PK
     procedure upd_SIST_PK(
-        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t ,
+        p_SIST_CODIGO IN GRL_SISTEMAS_TP.SIST_CODIGO_t ,
         p_nombre IN GRL_SISTEMAS_TP.nombre_t DEFAULT set_as_uninvoked_parameter.nlvc2('P2')
         ,p_descripcion IN GRL_SISTEMAS_TP.descripcion_t DEFAULT set_as_uninvoked_parameter.nlvc2('P3')
         ,p_nivel_sistema IN GRL_SISTEMAS_TP.nivel_sistema_t DEFAULT set_as_uninvoked_parameter.nlnum('P4')
@@ -375,7 +375,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_CP"
                 ,aud_modificado_el = CASE WHEN INSTR(v_client_info, '#P7#') > 0 then aud_modificado_el ELSE p_aud_modificado_el END
                 ,aud_modificado_por = CASE WHEN INSTR(v_client_info, '#P8#') > 0 then aud_modificado_por ELSE p_aud_modificado_por END
         where
-            ID_SISTEMA = p_id_sistema;
+            SIST_CODIGO = p_SIST_CODIGO;
 
         invocation_params_context.set_client_info (NULL);
     exception
@@ -390,7 +390,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_CP"
     -- Borra registro(s) de la tabla GRL_SISTEMAS en
    -- función de la constraint SIST_PK
     function del_SIST_PK(
-        p_id_sistema IN GRL_SISTEMAS_TP.id_sistema_t
+        p_SIST_CODIGO IN GRL_SISTEMAS_TP.SIST_CODIGO_t
     ) RETURN SIMPLE_INTEGER IS
         --* Constantes para identificar el programa
         k_programa CONSTANT FDC_DEFS.program_name_t := 'DEL_SIST_PK';
@@ -400,7 +400,7 @@ CREATE OR REPLACE PACKAGE BODY "TIFUND_OWN"."GRL_SISTEMAS_CP"
     begin
         delete GRL_SISTEMAS
         where
-            ID_SISTEMA = p_id_sistema;
+            SIST_CODIGO = p_SIST_CODIGO;
 
         v_num_regs := SQL%ROWCOUNT;
         RETURN v_num_regs;

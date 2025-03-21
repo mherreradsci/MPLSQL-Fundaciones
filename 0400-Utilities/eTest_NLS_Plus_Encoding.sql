@@ -33,6 +33,8 @@ col C_ENCODING new_value V_ENCODING
 select chr(ascii('ñ')) from dual;
 
 -- chr(241) = ñ
+-- chr(241) = ñ
+--select ascii('ñ'), chr(ascii('ñ')) from dual;
 with encoding as (
     select case when 'ñ' != chr(ascii('ñ')) then 'Fail' else 'Pass: Encoding Ok' end as TestEncoding from dual
 )     
@@ -40,5 +42,8 @@ select  case testencoding when 'Pass: Encoding Ok' then 0 else 1/0 end as force_
 from encoding;
 
 
+<<<<<<< HEAD
 --select ascii('ñ'), chr(ascii('ñ')) from dual;
 
+=======
+>>>>>>> e7edbef10df3abed3b125d4b1498d70b3f86a4be
