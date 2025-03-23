@@ -8,12 +8,12 @@
 WHENEVER SQLERROR EXIT SQL.SQLCODE
 
 set echo off lines 600 pagesize 9999
-col DB_CHARACTERSET format a30
 
-select VALUE as DB_CHARACTERSET from nls_database_parameters where parameter='NLS_CHARACTERSET';
 
 col PARAMETER format a30 wrap
 col VALUE format a30 wrap
+
+select * from nls_database_parameters where parameter like 'NLS_%CHARACTERSET' order by parameter;
 
 SELECT * FROM nls_session_parameters where parameter in('NLS_TERRITORY', 'NLS_LANGUAGE','NLS_NUMERIC_CHARACTERS','NLS_DATE_FORMAT','NLS_DATE_LANGUAGE');
 
@@ -29,21 +29,12 @@ select case to_char(next_day(trunc(sysdate, 'month'), 'lunes'), 'd') when '1' th
  
 col C_ENCODING new_value V_ENCODING
 
+-- Valida que el lenguaje y character set sea el correcto
+select ascii('ñ') as a, chr(ascii('ñ')) as c, unistr('\00f1') as u from dual;
 
-select chr(ascii('ñ')) from dual;
-
--- chr(241) = ñ
--- chr(241) = ñ
---select ascii('ñ'), chr(ascii('ñ')) from dual;
 with encoding as (
     select case when 'ñ' != chr(ascii('ñ')) then 'Fail' else 'Pass: Encoding Ok' end as TestEncoding from dual
 )     
 select  case testencoding when 'Pass: Encoding Ok' then 0 else 1/0 end as force_error  
 from encoding;
 
-
-<<<<<<< HEAD
---select ascii('ñ'), chr(ascii('ñ')) from dual;
-
-=======
->>>>>>> e7edbef10df3abed3b125d4b1498d70b3f86a4be

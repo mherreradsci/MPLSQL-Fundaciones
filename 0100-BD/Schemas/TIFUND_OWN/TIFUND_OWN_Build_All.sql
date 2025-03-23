@@ -18,10 +18,17 @@
 ---------------------------------- IMPORTANTE ----------------------------------
 ---------------------------------- IMPORTANTE ----------------------------------
 -- Para ejecutar desde MINGW64 en Windows se debe asignar la variable de 
--- ambiente NLS_LANG utilizando español y UTF8 o AL32UTF8, por ejemplo: 
---  $ NLS_LANG=SPANISH_SPAIN.UTF8 sqlplus system@centos-ora11g @TIFUND_OWN_Build_All.sql
---  $ NLS_LANG=SPANISH_SPAIN.UTF8 sqlplus system@docker-19c-pdb1-testing @TIFUND_OWN_Build_All.sql
+-- ambiente NLS_LANG utilizando español y UTF8 o AL32UTF8, por ejemplo:
+--  $ cd <BASE_PROJ>/0100-MPLSQL-Fundaciones/0100-BD/Schema/TIFUND_OWN
+--  $ NLS_LANG=SPANISH_CHILE.UTF8 sqlplus system@centos-ora11g @TIFUND_OWN_Build_All.sql
+--  $ NLS_LANG=SPANISH_CHILE.UTF8 sqlplus system@docker-19c-pdb1-testing @TIFUND_OWN_Build_All.sql
 
+-- Una vez ejecutado el script se debe validar que el último mensaje
+-- sea "### Finished!!!" Si no se muestra este mensaje quiere decir que hubo
+-- algún problema con la ejecución. En este caso, debe revisar el log de este
+-- script para detectar el error.
+
+-------------------------------- FIN IMPORTANTE --------------------------------
 
 col C_SERVICE_NAME new_value V_SERVICE_NAME
 col C_DT new_value V_DT
@@ -33,8 +40,8 @@ from dual;
 spool ./TIFUND_OWN_Build_All-&V_SERVICE_NAME.-&V_DT..spool.out  
 set echo on
 
-WHENEVER SQLERROR EXIT SQL.SQLCODE; -- Incluir siempre
-WHENEVER OSERROR EXIT FAILURE;
+WHENEVER SQLERROR EXIT SQL.SQLCODE
+WHENEVER OSERROR EXIT FAILURE
 
 alter session set NLS_TERRITORY=CHILE;
 alter session set NLS_LANGUAGE=SPANISH;
@@ -46,10 +53,11 @@ alter session set NLS_LANGUAGE=SPANISH;
 -- DROP_OWNER_AND_ROLE='Yes'/'No' First time must be 'No'
 DEFINE DROP_OWNER_AND_ROLE='Yes' 
 
-
+PROMPT ### Owner Roles
 @./Roles/TIFUND_OWN_DEVELOP_ROL.sql;
 @./Roles/TIFUND_OWN_DEPLOY_ROL.sql;
 
+PROMPT ### User
 @./Users/TIFUND_OWN.sql;
 
 PROMPT # Contexts
@@ -62,35 +70,6 @@ PROMPT # Tables
 @./Tables/ULP_PROCESOS.sql;
 @./Tables/ULP_DET_PROCESOS.sql;
 @./Tables/UER_ERRORES.sql;
-
---XXXPROMPT Tiggers
---XXX@./Triggers/ERRO_BI_TRG.trg;
---XXX@./Triggers/ERRO_BU_TRG.trg;
---XXX@./Triggers/SIST_BI_TRG.trg;
---XXX@./Triggers/SIST_BU_TRG.trg;
---XXX@./Triggers/COSI_BI_TRG.trg;
---XXX@./Triggers/COSI_BU_TRG.trg;
---XXX@./Triggers/PROC_BI_TRG.trg;
---XXX@./Triggers/PROC_BU_TRG.trg;
---XXX@./Triggers/DEPR_BI_TRG.trg;
---XXX@./Triggers/DEPR_BU_TRG.trg;
-
---XXXPROMPT Indexes
---XXX@./Indexes/SIST_PK.sql;
---XXX@./Indexes/COSI_PK.sql;
---XXX@./Indexes/PROC_PK.sql;
---XXX@./Indexes/DEPR_PK.sql;
---XXX@./Indexes/ERRO_PK.sql;
-
---XXXPROMPT Constraints
---XXX@./Constraints/UER_ERRORES_NonFK.sql;
---XXX@./Constraints/GRL_SISTEMAS_NonFK.sql;
---XXX@./Constraints/GRL_COMPOSICION_SISTEMAS_NonFK.sql;
---XXX@./Constraints/ULP_PROCESOS_NonFK.sql;
---XXX@./Constraints/ULP_DET_PROCESOS_NonFK.sql;
---XXX@./Constraints/GRL_COMPOSICION_SISTEMAS_FK.sql;
---XXX@./Constraints/ULP_PROCESOS_FK.sql;
---XXX1@./Constraints/ULP_DET_PROCESOS_FK.sql;
 
 PROMPT ### Packages
 @./Packages/FDC_DEFS.pks.sql;
